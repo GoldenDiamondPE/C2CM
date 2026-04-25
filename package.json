@@ -7,9 +7,8 @@
     "server"
   ],
   "scripts": {
-  "build": "npm run build --workspace=client",
-  "start": "node server/server.js",
-  "test": "echo \"No tests yet\"" 
+  "build": "npm install --workspace=client && npm run build --workspace=client",
+  "start": "node server/server.js"
 },
   "repository": {
     "type": "git",
