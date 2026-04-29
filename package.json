@@ -7,9 +7,9 @@
     "server"
   ],
   "scripts": {
-  "build": "npm install --workspace=client && npm run build --workspace=client",
-  "start": "node server/server.js"
-},
+    "build": "npm install --workspace=client && npm run build --workspace=client",
+    "start": "node server/server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GoldenDiamondPE/C2CM.git"
@@ -18,5 +18,8 @@
     "node": ">=20.0.0"
   },
   "type": "commonjs",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.15.2"
+  }
 }

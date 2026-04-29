@@ -1,52 +1,50 @@
 const express = require("express");
-const app = express();
 const path = require("path");
 const cors = require("cors");
+const fs = require("fs").promises;
 
+const app = express();
 const PORT = process.env.PORT || 8080;
 
-console.log("SERVER FILE IS RUNNING");
+// middleware
+app.use(express.json());
 
-// Logging
-app.use((req, res, next) => {
-  console.log("Incoming request:", req.method, req.url);
-  next();
-});
-
-// CORS
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://coursestocareerpathmapperwa-e5gbh3grh6a6fxbj.eastus-01.azurewebsites.net"
   ],
-  optionsSuccessStatus: 200,
 }));
 
-// Static React build
+// absolute path to db.json
+const DB_PATH = path.join(__dirname, "data", "/db.json");
+
+// helper to read JSON
+async function readDB() {
+  const data = await fs.readFile(DB_PATH, "utf-8");
+  return JSON.parse(data);
+}
+
+app.get("/api/courses", async (req, res) => {
+  const db = await readDB();
+  res.json(db.courses);
+});
+app.get("/api/jobs", async (req, res) => {
+  const db = await readDB();
+  res.json(db.jobs);
+});
+app.get("/api/student", async (req, res) => {
+  const db = await readDB();
+  res.json(db.student);
+});
+
+
+// serve frontend (for production build)
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// API
-app.get("/api", (req, res) => {
-  res.json({ fruits: ["apple", "strawberry", "pineapple", "grape", "turtle"] });
-});
-
-// Debug route
-app.get("/test-file", (req, res) => {
-  const fs = require("fs");
-  const filePath = path.join(__dirname, "../client/dist/index.html");
-
-  res.send({
-    exists: fs.existsSync(filePath),
-    path: filePath
-  });
-});
-
-// React fallback (LAST)
-app.use((req, res) => {
+app.get("/{*any}", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Home() {
   return (
@@ -6,8 +8,7 @@ export default function Home() {
       <Helmet>
         <title>Home | C2CM</title>
       </Helmet>
-      <h1>Home Page</h1>
-      <h1 className='m-400'>Home Page</h1>
+      <h1 className='text-center text-4xl font-bold mb-5'>Home Page</h1>
     </div>
   );
 }

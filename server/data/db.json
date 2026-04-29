@@ -1,0 +1,286 @@
+{
+  "jobs": [
+    {
+      "id": 9,
+      "title": "Security Engineer",
+      "company": "SecureTech",
+      "location": "Denver, CO",
+      "required_skills": ["Cybersecurity", "Encryption", "Python"]
+    },
+    {
+      "id": 5,
+      "title": "DevOps Specialist",
+      "company": "DevOpsCo",
+      "location": "Chicago, IL",
+      "required_skills": ["Docker", "Kubernetes", "CI/CD"]
+    },
+    {
+      "id": 18,
+      "title": "Systems Architect",
+      "company": "ArchDesign",
+      "location": "Raleigh, NC",
+      "required_skills": ["System Design", "Cloud Computing", "Java"]
+    },
+    {
+      "id": 1,
+      "title": "Data Scientist",
+      "company": "TechCorp",
+      "location": "San Francisco, CA",
+      "required_skills": ["Python", "Machine Learning", "SQL"]
+    },
+    {
+      "id": 19,
+      "title": "Web Security Analyst",
+      "company": "SecureWeb",
+      "location": "Philadelphia, PA",
+      "required_skills": ["Web Security", "JavaScript", "SQL"]
+    },
+    {
+      "id": 15,
+      "title": "Mobile App Developer",
+      "company": "AppWorld",
+      "location": "Portland, OR",
+      "required_skills": ["Swift", "Android", "Java"]
+    },
+    {
+      "id": 17,
+      "title": "AI Ethics Specialist",
+      "company": "EthicsAI",
+      "location": "Washington, DC",
+      "required_skills": ["Ethics in AI", "Machine Learning", "Python"]
+    },
+    {
+      "id": 14,
+      "title": "Blockchain Developer",
+      "company": "CryptoChain",
+      "location": "San Francisco, CA",
+      "required_skills": ["Solidity", "Ethereum", "Smart Contracts"]
+    },
+    {
+      "id": 8,
+      "title": "AI Researcher",
+      "company": "NeuralNet",
+      "location": "San Diego, CA",
+      "required_skills": ["PyTorch", "Deep Learning", "Python"]
+    },
+    {
+      "id": 6,
+      "title": "Data Analyst",
+      "company": "DataDrive",
+      "location": "Boston, MA",
+      "required_skills": ["SQL", "Python", "Excel"]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "InnovateInc",
+      "location": "New York, NY",
+      "required_skills": ["Java", "Algorithms", "Git"]
+    },
+    {
+      "id": 3,
+      "title": "Cloud Engineer",
+      "company": "CloudSoft",
+      "location": "Austin, TX",
+      "required_skills": ["Cloud Computing", "AWS", "Python"]
+    },
+    {
+      "id": 10,
+      "title": "Backend Developer",
+      "company": "CodeCraft",
+      "location": "Atlanta, GA",
+      "required_skills": ["Java", "Spring Boot", "SQL"]
+    },
+    {
+      "id": 12,
+      "title": "Front End Developer",
+      "company": "UIUXPro",
+      "location": "Miami, FL",
+      "required_skills": ["HTML", "CSS", "JavaScript"]
+    },
+    {
+      "id": 20,
+      "title": "Machine Vision Engineer",
+      "company": "VisionTech",
+      "location": "Detroit, MI",
+      "required_skills": ["Computer Vision", "OpenCV", "Python"]
+    },
+    {
+      "id": 11,
+      "title": "Data Engineer",
+      "company": "BigDataInc",
+      "location": "Dallas, TX",
+      "required_skills": ["Hadoop", "Spark", "Python"]
+    },
+    {
+      "id": 7,
+      "title": "Full Stack Developer",
+      "company": "WebBuilders",
+      "location": "Los Angeles, CA",
+      "required_skills": ["JavaScript", "React", "Node.js"]
+    },
+    {
+      "id": 16,
+      "title": "Database Administrator",
+      "company": "DataBaseCo",
+      "location": "Houston, TX",
+      "required_skills": ["SQL", "MySQL", "Data Modeling"]
+    },
+    {
+      "id": 13,
+      "title": "Network Engineer",
+      "company": "NetSecure",
+      "location": "Phoenix, AZ",
+      "required_skills": ["Networking", "Cisco", "Linux"]
+    }
+  ],
+
+  "courses": [
+    {
+      "id": 11,
+      "name": "Big Data Processing",
+      "skills_covered": ["Hadoop", "Spark", "Python"],
+      "prerequisites": ["CS107: Data Management"]
+    },
+    {
+      "id": 12,
+      "name": "Front End Development",
+      "skills_covered": ["HTML", "CSS", "JavaScript"],
+      "prerequisites": ["CS104: Web Technologies"]
+    },
+    {
+      "id": 9,
+      "name": "Cybersecurity Essentials",
+      "skills_covered": ["Cybersecurity", "Encryption", "Python"],
+      "prerequisites": ["CS105: Network Security"]
+    },
+    {
+      "id": 18,
+      "name": "Systems Architecture",
+      "skills_covered": ["System Design", "Cloud Computing", "Java"],
+      "prerequisites": ["CS112: Software Architecture"]
+    },
+    {
+      "id": 19,
+      "name": "Web Security",
+      "skills_covered": ["Web Security", "JavaScript", "SQL"],
+      "prerequisites": ["CS105: Network Security"]
+    },
+    {
+      "id": 15,
+      "name": "Mobile App Development",
+      "skills_covered": ["Swift", "Android", "Java"],
+      "prerequisites": ["CS110: Mobile Platforms"]
+    },
+    {
+      "id": 3,
+      "name": "Cloud Computing Fundamentals",
+      "skills_covered": ["Cloud Computing", "AWS", "Python"],
+      "prerequisites": ["CS102: Operating Systems"]
+    },
+    {
+      "id": 16,
+      "name": "Database Systems",
+      "skills_covered": ["SQL", "MySQL", "Data Modeling"],
+      "prerequisites": ["CS111: Database Fundamentals"]
+    },
+    {
+      "id": 7,
+      "name": "Full Stack Web Development",
+      "skills_covered": ["JavaScript", "React", "Node.js"],
+      "prerequisites": ["CS104: Web Technologies"]
+    },
+    {
+      "id": 6,
+      "name": "Data Analysis Techniques",
+      "skills_covered": ["SQL", "Python", "Data Analysis"],
+      "prerequisites": ["CS101: Introduction to Programming"]
+    },
+    {
+      "id": 20,
+      "name": "Computer Vision",
+      "skills_covered": ["Computer Vision", "OpenCV", "Python"],
+      "prerequisites": ["CS201: Machine Learning 101"]
+    },
+    {
+      "id": 17,
+      "name": "AI Ethics and Society",
+      "skills_covered": ["Ethics in AI", "Machine Learning", "Python"],
+      "prerequisites": ["CS201: Machine Learning 101"]
+    },
+    {
+      "id": 5,
+      "name": "DevOps Practices",
+      "skills_covered": ["Docker", "Kubernetes", "CI/CD"],
+      "prerequisites": ["CS103: Software Engineering"]
+    },
+    {
+      "id": 8,
+      "name": "AI Research Methods",
+      "skills_covered": ["PyTorch", "Machine Learning", "Python"],
+      "prerequisites": ["CS201: Machine Learning 101"]
+    },
+    {
+      "id": 14,
+      "name": "Blockchain Technology",
+      "skills_covered": ["Solidity", "Ethereum", "Smart Contracts"],
+      "prerequisites": ["CS109: Cryptography"]
+    },
+    {
+      "id": 10,
+      "name": "Backend Development",
+      "skills_covered": ["Java", "Spring Boot", "SQL"],
+      "prerequisites": ["CS106: Object-Oriented Programming"]
+    },
+    {
+      "id": 1,
+      "name": "Machine Learning 101",
+      "skills_covered": ["Python", "Neural Networks", "Machine Learning"],
+      "prerequisites": ["CS101: Introduction to Programming"]
+    },
+    {
+      "id": 2,
+      "name": "Data Structures and Algorithms",
+      "skills_covered": ["Algorithms", "Data Structures", "Java"],
+      "prerequisites": []
+    },
+    {
+      "id": 4,
+      "name": "Deep Learning Applications",
+      "skills_covered": ["TensorFlow", "Deep Learning", "Python"],
+      "prerequisites": ["CS201: Machine Learning 101"]
+    }
+  ],
+
+  "student": {
+    "skills_obtained": [
+      "Kubernetes", "Android", "React", "SQL", "Node.js", "Web Security",
+      "Spark", "Solidity", "MySQL", "AWS", "Hadoop", "Data Modeling",
+      "Spring Boot", "CSS", "Smart Contracts", "Algorithms", "TensorFlow",
+      "Data Analysis", "Encryption", "Docker", "CI/CD", "JavaScript",
+      "System Design", "Python", "Neural Networks", "PyTorch",
+      "Cloud Computing", "Data Structures", "Cybersecurity",
+      "Machine Learning", "Deep Learning", "Java", "Ethereum",
+      "Computer Vision", "Swift", "HTML", "Ethics in AI", "OpenCV"
+    ],
+    "required_skills": [
+      "Kubernetes", "Android", "Networking", "React", "SQL", "Linux",
+      "Node.js", "Web Security", "Spark", "Solidity", "Excel", "MySQL",
+      "AWS", "Hadoop", "Data Modeling", "Spring Boot", "Algorithms",
+      "Smart Contracts", "CSS", "Encryption", "Docker", "CI/CD",
+      "JavaScript", "System Design", "Python", "PyTorch",
+      "Cloud Computing", "Cisco", "Cybersecurity", "Machine Learning",
+      "Deep Learning", "Git", "Java", "Ethereum", "Computer Vision",
+      "Swift", "HTML", "Ethics in AI", "OpenCV"
+    ],
+    "skill_gaps": ["Excel", "Git", "Networking", "Linux", "Cisco"]
+  },
+
+  "insights": [
+    "Student Skill Gap: Excel - No available courses found to bridge this gap.",
+    "Student Skill Gap: Git - No available courses found to bridge this gap.",
+    "Student Skill Gap: Networking - No available courses found to bridge this gap.",
+    "Student Skill Gap: Linux - No available courses found to bridge this gap.",
+    "Student Skill Gap: Cisco - No available courses found to bridge this gap."
+  ]
+}
