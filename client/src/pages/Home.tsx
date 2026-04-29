@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 
 export default function Home() {
   return (
