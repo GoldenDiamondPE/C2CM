@@ -1,2 +1,7 @@
 @import "tailwindcss";
 
+@theme {
+  --color-psuBeaver: rgb(30, 64, 124);
+  --color-psuNittany: rgb(0, 30, 68);
+  --color-psuPugh: rgb(150, 190, 230);
+}

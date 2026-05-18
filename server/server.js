@@ -6,6 +6,10 @@ const fs = require("fs").promises;
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Path to JSON files
+const coursesdb = path.join(__dirname, "data", "courses.json");
+const studentsdb = path.join(__dirname, "data", "students.json");
+
 // middleware
 app.use(express.json());
 
@@ -15,33 +19,44 @@ app.use(cors({
   ],
 }));
 
-// absolute path to db.json
-const DB_PATH = path.join(__dirname, "data", "/db.json");
 
-// helper to read JSON
-async function readDB() {
-  const data = await fs.readFile(DB_PATH, "utf-8");
-  return JSON.parse(data);
-}
+// 1. Get all students
+app.get("/api/students", async (req, res) => {
+  const rawData = await fs.readFile(studentsdb, "utf8");
+  const data = JSON.parse(rawData);
+  res.json(data.students);
+});
 
+// 2. Get all courses
 app.get("/api/courses", async (req, res) => {
-  const db = await readDB();
-  res.json(db.courses);
+  const rawData = await fs.readFile(coursesdb, "utf8");
+  const data = JSON.parse(rawData);
+  res.json(data.courses);
 });
-app.get("/api/jobs", async (req, res) => {
-  const db = await readDB();
-  res.json(db.jobs);
-});
-app.get("/api/student", async (req, res) => {
-  const db = await readDB();
-  res.json(db.student);
+
+// 3. Add a course ID to a student's class list
+app.post("/api/enroll", async (req, res) => {
+  const { studentName, courseId } = req.body;
+
+  // FIXED: Now uses the studentsdb variable
+  const rawData = await fs.readFile(studentsdb, "utf8");
+  const data = JSON.parse(rawData);
+
+  // Find student and push the course integer ID
+  const student = data.students.find(s => s.name === studentName);
+  student.classes.push(parseInt(courseId));
+
+  // FIXED: Now uses the studentsdb variable
+  await fs.writeFile(studentsdb, JSON.stringify(data, null, 2));
+
+  res.json(student);
 });
 
 
 // serve frontend (for production build)
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.get("/{*any}", (req, res) => {
+app.get("*any", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 

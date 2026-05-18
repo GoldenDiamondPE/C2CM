@@ -1,0 +1,137 @@
+{
+    "jobs": [
+    {
+      "id": 9,
+      "title": "Security Engineer",
+      "company": "SecureTech",
+      "location": "Denver, CO",
+      "required_skills": ["Cybersecurity", "Encryption", "Python"]
+    },
+    {
+      "id": 5,
+      "title": "DevOps Specialist",
+      "company": "DevOpsCo",
+      "location": "Chicago, IL",
+      "required_skills": ["Docker", "Kubernetes", "CI/CD"]
+    },
+    {
+      "id": 18,
+      "title": "Systems Architect",
+      "company": "ArchDesign",
+      "location": "Raleigh, NC",
+      "required_skills": ["System Design", "Cloud Computing", "Java"]
+    },
+    {
+      "id": 1,
+      "title": "Data Scientist",
+      "company": "TechCorp",
+      "location": "San Francisco, CA",
+      "required_skills": ["Python", "Machine Learning", "SQL"]
+    },
+    {
+      "id": 19,
+      "title": "Web Security Analyst",
+      "company": "SecureWeb",
+      "location": "Philadelphia, PA",
+      "required_skills": ["Web Security", "JavaScript", "SQL"]
+    },
+    {
+      "id": 15,
+      "title": "Mobile App Developer",
+      "company": "AppWorld",
+      "location": "Portland, OR",
+      "required_skills": ["Swift", "Android", "Java"]
+    },
+    {
+      "id": 17,
+      "title": "AI Ethics Specialist",
+      "company": "EthicsAI",
+      "location": "Washington, DC",
+      "required_skills": ["Ethics in AI", "Machine Learning", "Python"]
+    },
+    {
+      "id": 14,
+      "title": "Blockchain Developer",
+      "company": "CryptoChain",
+      "location": "San Francisco, CA",
+      "required_skills": ["Solidity", "Ethereum", "Smart Contracts"]
+    },
+    {
+      "id": 8,
+      "title": "AI Researcher",
+      "company": "NeuralNet",
+      "location": "San Diego, CA",
+      "required_skills": ["PyTorch", "Deep Learning", "Python"]
+    },
+    {
+      "id": 6,
+      "title": "Data Analyst",
+      "company": "DataDrive",
+      "location": "Boston, MA",
+      "required_skills": ["SQL", "Python", "Excel"]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "InnovateInc",
+      "location": "New York, NY",
+      "required_skills": ["Java", "Algorithms", "Git"]
+    },
+    {
+      "id": 3,
+      "title": "Cloud Engineer",
+      "company": "CloudSoft",
+      "location": "Austin, TX",
+      "required_skills": ["Cloud Computing", "AWS", "Python"]
+    },
+    {
+      "id": 10,
+      "title": "Backend Developer",
+      "company": "CodeCraft",
+      "location": "Atlanta, GA",
+      "required_skills": ["Java", "Spring Boot", "SQL"]
+    },
+    {
+      "id": 12,
+      "title": "Front End Developer",
+      "company": "UIUXPro",
+      "location": "Miami, FL",
+      "required_skills": ["HTML", "CSS", "JavaScript"]
+    },
+    {
+      "id": 20,
+      "title": "Machine Vision Engineer",
+      "company": "VisionTech",
+      "location": "Detroit, MI",
+      "required_skills": ["Computer Vision", "OpenCV", "Python"]
+    },
+    {
+      "id": 11,
+      "title": "Data Engineer",
+      "company": "BigDataInc",
+      "location": "Dallas, TX",
+      "required_skills": ["Hadoop", "Spark", "Python"]
+    },
+    {
+      "id": 7,
+      "title": "Full Stack Developer",
+      "company": "WebBuilders",
+      "location": "Los Angeles, CA",
+      "required_skills": ["JavaScript", "React", "Node.js"]
+    },
+    {
+      "id": 16,
+      "title": "Database Administrator",
+      "company": "DataBaseCo",
+      "location": "Houston, TX",
+      "required_skills": ["SQL", "MySQL", "Data Modeling"]
+    },
+    {
+      "id": 13,
+      "title": "Network Engineer",
+      "company": "NetSecure",
+      "location": "Phoenix, AZ",
+      "required_skills": ["Networking", "Cisco", "Linux"]
+    }
+  ]
+}

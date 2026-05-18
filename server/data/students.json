@@ -1,0 +1,23 @@
+{
+  "students": [
+    {
+      "name": "Brandon Bula",
+      "major": "Computer Science",
+      "advisor": "George",
+      "classes": [
+        11,
+        12
+      ],
+      "jobs": "Downingtown Technology"
+    },
+    {
+      "name": "John Doe",
+      "major": "Computer Science",
+      "advisor": "Smith",
+      "classes": [
+        9
+      ],
+      "jobs": "Tech Solutions"
+    }
+  ]
+}
