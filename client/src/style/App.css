@@ -1,0 +1,6 @@
+.container {
+  display: flex; /* Horizontal layout */
+  justify-content: space-between; /* Equal spacing between divs */
+  align-items: center; /* Vertically align divs */
+  gap: 10px; /* Optional space between divs */
+}
