@@ -3,7 +3,7 @@
     {
       "name": "Brandon Bula",
       "major": "Computer Science",
-      "advisor": "George",
+      "advisorID": "George",
       "classes": [
         11,
         12
@@ -13,7 +13,7 @@
     {
       "name": "John Doe",
       "major": "Computer Science",
-      "advisor": "Smith",
+      "advisorID": "Smith",
       "classes": [
         9
       ],
