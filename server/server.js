@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 8080;
 // Path to JSON files
 const coursesdb = path.join(__dirname, "data", "courses.json");
 const studentsdb = path.join(__dirname, "data", "students.json");
+const DATA_PATH = path.join(__dirname, 'data', 'undergradMajors.json');
 
 // middleware
 app.use(express.json());
@@ -32,6 +33,17 @@ app.get("/api/courses", async (req, res) => {
   const rawData = await fs.readFile(coursesdb, "utf8");
   const data = JSON.parse(rawData);
   res.json(data.courses);
+});
+
+app.get('/api/majors', async (req, res) => {
+  try {
+    const content = await fs.readFile(DATA_PATH, 'utf-8');
+    const json = JSON.parse(content);
+    res.json(json);
+  } catch (err) {
+    console.error("Error reading majors file:", err);
+    res.status(500).json({ error: "Failed to load majors list" });
+  }
 });
 
 // 3. Add a course ID to a student's class list
