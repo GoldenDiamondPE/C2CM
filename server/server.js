@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 8080;
 // Path to JSON files
 const coursesdb = path.join(__dirname, "data", "courses.json");
 const studentsdb = path.join(__dirname, "data", "students.json");
-const DATA_PATH = path.join(__dirname, 'data', 'undergradMajors.json');
+const majorsdb = path.join(__dirname, 'data', 'undergradMajors.json');
+const minorsdb = path.join(__dirname, 'data', 'undergradMinors.json');
+
 
 // middleware
 app.use(express.json());
@@ -37,12 +39,23 @@ app.get("/api/courses", async (req, res) => {
 
 app.get('/api/majors', async (req, res) => {
   try {
-    const content = await fs.readFile(DATA_PATH, 'utf-8');
+    const content = await fs.readFile(majorsdb, 'utf-8');
     const json = JSON.parse(content);
     res.json(json);
   } catch (err) {
     console.error("Error reading majors file:", err);
     res.status(500).json({ error: "Failed to load majors list" });
+  }
+});
+
+app.get('/api/minors', async (req, res) => {
+  try {
+    const content = await fs.readFile(minorsdb, 'utf-8');
+    const json = JSON.parse(content);
+    res.json(json);
+  } catch (err) {
+    console.error("Error reading minors file:", err);
+    res.status(500).json({ error: "Failed to load minors list" });
   }
 });
 

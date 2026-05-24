@@ -5,6 +5,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Student from './pages/Student';
 import Advisor from './pages/Advisor';
+import StudentSetup from './pages/StudentSetup';
 
 
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "student", element: <Student /> },
       { path: "advisor", element: <Advisor /> },
+      { path: "studentsetup", element: <StudentSetup /> },
       
     ],
   },

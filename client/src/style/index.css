@@ -8,9 +8,13 @@
 
 @layer components {
   .textFieldBox {
-    @apply w-64 rounded-md border border-gray-300 bg-white px-3 py-2 ml-3 
-           text-base text-gray-900 shadow-sm placeholder:text-gray-400
-           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 
-           focus:outline-hidden disabled:cursor-not-allowed disabled:bg-gray-50;
+    @apply flex-1 ml-3 rounded-md border border-gray-300 bg-white px-3 py-2;
+    @apply text-base text-gray-900 shadow-sm placeholder:text-gray-400;
+    @apply focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-hidden;
+    @apply disabled:cursor-not-allowed disabled:bg-gray-50;
+  }
+
+  .boxContainer {
+    @apply flex justify-between items-center gap-2.5; 
   }
 }

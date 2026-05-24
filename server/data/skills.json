@@ -1,27 +1,12 @@
 {
-    "skills_obtained": [
-      "Kubernetes", "Android", "React", "SQL", "Node.js", "Web Security",
-      "Spark", "Solidity", "MySQL", "AWS", "Hadoop", "Data Modeling",
-      "Spring Boot", "CSS", "Smart Contracts", "Algorithms", "TensorFlow",
-      "Data Analysis", "Encryption", "Docker", "CI/CD", "JavaScript",
-      "System Design", "Python", "Neural Networks", "PyTorch",
-      "Cloud Computing", "Data Structures", "Cybersecurity",
-      "Machine Learning", "Deep Learning", "Java", "Ethereum",
-      "Computer Vision", "Swift", "HTML", "Ethics in AI", "OpenCV"
-    ],
-
-    "required_skills": [
-      "Kubernetes", "Android", "Networking", "React", "SQL", "Linux",
-      "Node.js", "Web Security", "Spark", "Solidity", "Excel", "MySQL",
-      "AWS", "Hadoop", "Data Modeling", "Spring Boot", "Algorithms",
-      "Smart Contracts", "CSS", "Encryption", "Docker", "CI/CD",
-      "JavaScript", "System Design", "Python", "PyTorch",
-      "Cloud Computing", "Cisco", "Cybersecurity", "Machine Learning",
-      "Deep Learning", "Git", "Java", "Ethereum", "Computer Vision",
-      "Swift", "HTML", "Ethics in AI", "OpenCV"
-    ],
-
-    "skill_gaps": [
-        "Excel", "Git", "Networking", "Linux", "Cisco"
-    ]
+      "skills": [
+      "Algorithms", "Android", "AWS", "CI/CD", "Cisco", "Cloud Computing",
+      "Computer Vision", "CSS", "Cybersecurity", "Data Analysis",
+      "Data Modeling", "Data Structures", "Deep Learning", "Docker",
+      "Encryption", "Ethics in AI", "Ethereum", "Excel", "Git", "Hadoop",
+      "HTML", "Java", "JavaScript", "Kubernetes", "Linux", "Machine Learning",
+      "MySQL", "Networking", "Neural Networks", "Node.js", "OpenCV",
+      "Python", "PyTorch", "React", "Smart Contracts", "Solidity", "Spark",
+      "Spring Boot", "SQL", "Swift", "System Design", "TensorFlow", "Web Security"
+      ]
 }

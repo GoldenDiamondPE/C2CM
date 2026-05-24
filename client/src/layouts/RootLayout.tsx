@@ -13,6 +13,7 @@ export default function RootLayout() {
             <Link to="/about" className="hover:text-psuPugh">About</Link>
             <Link to="/student" className="hover:text-psuPugh">Student</Link>
             <Link to="/advisor" className="hover:text-psuPugh">Advisor</Link>
+             <Link to="/studentsetup" className="hover:text-psuPugh">Student Setup</Link>
           </div>
         </nav>
       </header>
