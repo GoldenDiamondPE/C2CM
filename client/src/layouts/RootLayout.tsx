@@ -8,12 +8,16 @@ export default function RootLayout() {
         <nav className="flex justify-between items-center">
           <div className="font-bold text-xl">Course to Career Path Mapper</div>
           <div className="space-x-8">
+            {/*<Link to="/" className="hover:text-psuPugh">Home</Link> OLD HOME PAGE*/}
+            {/*<Link to="/student" className="hover:text-psuPugh">Student</Link> OLD STUDENT*/}
+
             <Link to="/" className="hover:text-psuPugh">Home</Link>
-            <Link to="/login" className="hover:text-psuPugh">Login</Link>
+            <Link to="/studentSetup" className="hover:text-psuPugh">Student</Link>
+            <Link to="/faculty" className="hover:text-psuPugh">Faculty</Link>
+            <Link to="/admin" className="hover:text-psuPugh">Admin</Link>
+
+            <Link to="/login" className="hover:text-psuPugh">Login Temp</Link>
             <Link to="/about" className="hover:text-psuPugh">About</Link>
-            <Link to="/student" className="hover:text-psuPugh">Student</Link>
-            <Link to="/advisor" className="hover:text-psuPugh">Advisor</Link>
-             <Link to="/studentsetup" className="hover:text-psuPugh">Student Setup</Link>
           </div>
         </nav>
       </header>
