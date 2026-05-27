@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <Helmet>
-        <title>Login | C2CM</title>
+        <title>Login Temp | C2CM</title>
       </Helmet>
 
       <div className="mx-auto mt-15 w-full max-w-lg rounded-xl p-6 text-black border-8 border-psuBeaver">

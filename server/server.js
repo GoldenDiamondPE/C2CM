@@ -11,6 +11,8 @@ const coursesdb = path.join(__dirname, "data", "courses.json");
 const studentsdb = path.join(__dirname, "data", "students.json");
 const majorsdb = path.join(__dirname, 'data', 'undergradMajors.json');
 const minorsdb = path.join(__dirname, 'data', 'undergradMinors.json');
+const skillsdb = path.join(__dirname, 'data', 'skills.json');
+
 
 
 // middleware
@@ -24,20 +26,21 @@ app.use(cors({
 }));
 
 
-// 1. Get all students
+// Get all students
 app.get("/api/students", async (req, res) => {
   const rawData = await fs.readFile(studentsdb, "utf8");
   const data = JSON.parse(rawData);
   res.json(data.students);
 });
 
-// 2. Get all courses
+// Get all courses
 app.get("/api/courses", async (req, res) => {
   const rawData = await fs.readFile(coursesdb, "utf8");
   const data = JSON.parse(rawData);
   res.json(data.courses);
 });
 
+// Get all majors
 app.get('/api/majors', async (req, res) => {
   try {
     const content = await fs.readFile(majorsdb, 'utf-8');
@@ -49,6 +52,7 @@ app.get('/api/majors', async (req, res) => {
   }
 });
 
+// Get all minors
 app.get('/api/minors', async (req, res) => {
   try {
     const content = await fs.readFile(minorsdb, 'utf-8');
@@ -57,6 +61,18 @@ app.get('/api/minors', async (req, res) => {
   } catch (err) {
     console.error("Error reading minors file:", err);
     res.status(500).json({ error: "Failed to load minors list" });
+  }
+});
+
+// Get all skills
+app.get('/api/skills', async (req, res) => {
+  try {
+    const rawData = await fs.readFile(skillsdb, 'utf8');
+    const data = JSON.parse(rawData);
+        res.json(data.skills); 
+  } catch (err) {
+    console.error("Error reading skills file:", err);
+    res.status(500).json({ error: "Failed to load skills list" });
   }
 });
 

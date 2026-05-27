@@ -6,16 +6,23 @@
   --color-psuPugh: rgb(150, 190, 230);
 }
 
-/* 1. Define at root so they are "known" utilities */
-.textFieldBox {
-  /* flex-1 makes the field grow to the end of the box */
-  @apply flex-1 ml-3 rounded-md border border-gray-300 bg-white px-3 py-2;
-  @apply text-base text-gray-900 shadow-sm placeholder:text-gray-400;
-  @apply focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-hidden;
-  @apply disabled:cursor-not-allowed disabled:bg-gray-50;
+
+@utility boxContainer {
+  /* Using gap-x-3 is often more reliable than margin-left on the child */
+  @apply flex items-center justify-between w-full mb-4 gap-x-3; 
 }
 
-.boxContainer {
-  /* w-full ensures the row stretches to both edges */
-  @apply flex items-center justify-between w-full mb-4; 
+@utility textFieldBox {
+  /* 
+     1. flex-1: Fills the remaining space.
+     2. min-w-0: Critical! Allows flex item to shrink below content size to prevent overflow.
+     3. field-sizing-content: (New in v4/Modern CSS) Automatically adjusts width to current selection.
+  */
+  @apply flex-1 min-w-0 rounded-md border border-gray-300 bg-white px-3 py-2;
+  @apply text-base text-gray-900 shadow-sm placeholder:text-gray-400;
+  @apply focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none;
+  @apply disabled:cursor-not-allowed disabled:bg-gray-50;
+  
+  /* v4 supports native CSS properties directly */
+  field-sizing: content; 
 }
