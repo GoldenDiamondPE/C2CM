@@ -25,11 +25,12 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const studentsResponse = await axios.get<Student[]>("http://localhost:8080/api/students");
-        const coursesResponse = await axios.get<Course[]>("http://localhost:8080/api/courses");
-        
-        setStudents(studentsResponse.data);
-        setCourses(coursesResponse.data);
+        const [studentsRes, coursesRes] = await Promise.all([
+        axios.get<Student[]>("/api/students"),
+        axios.get<Course[]>("/api/courses")
+      ]);
+        setStudents(studentsRes.data);
+        setCourses(coursesRes.data);
       } 
       catch (error) {
         console.error("Error fetching data from API:", error);
@@ -45,7 +46,7 @@ export default function Home() {
   return (
     <div className="p-5 flex flex-col items-center">
       <Helmet>
-        <title>Home | C2CM</title>
+        <title>Student and Course Fetch | C2CM</title>
       </Helmet>
       
       <h1 className='text-center text-4xl font-bold mb-5'>Home Page</h1>

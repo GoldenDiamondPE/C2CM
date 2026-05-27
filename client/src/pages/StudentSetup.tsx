@@ -7,7 +7,6 @@ interface Program {
 }
 
 export default function Home() {
-  // State for form fields
   const [formData, setFormData] = useState({
     firstName: '',
     middleName: '',
@@ -20,24 +19,22 @@ export default function Home() {
   const [majors, setMajors] = useState<Program[]>([]);
   const [minors, setMinors] = useState<Program[]>([]);
 
-  // Fetch Majors and Minors on mount
   useEffect(() => {
-    // Fetch Majors
-    fetch('http://localhost:8080/api/majors')
+    // Relative paths ensure it works on Azure and through Vite's proxy
+    fetch('/api/majors')
       .then((res) => res.json())
-      .then((data: Program[]) => setMajors(data))
-      .catch((err) => console.error("Error fetching majors:", err));
+      .then((data) => setMajors(data))
+      .catch((err) => console.error("Error:", err));
 
-    // Fetch Minors
-    fetch('http://localhost:8080/api/minors')
+    fetch('/api/minors')
       .then((res) => res.json())
-      .then((data: Program[]) => setMinors(data))
-      .catch((err) => console.error("Error fetching minors:", err));
+      .then((data) => setMinors(data))
+      .catch((err) => console.error("Error:", err));
   }, []);
 
   const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const response = await fetch('http://localhost:5000/api/save', {
+   e.preventDefault();
+    const response = await fetch('/api/enroll', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),

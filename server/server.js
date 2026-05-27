@@ -19,6 +19,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
+    "coursestocareerpathmapperwa-e5gbh3grh6a6fxbj.eastus-01.azurewebsites.net"
   ],
 }));
 

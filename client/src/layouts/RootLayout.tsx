@@ -12,12 +12,19 @@ export default function RootLayout() {
             {/*<Link to="/student" className="hover:text-psuPugh">Student</Link> OLD STUDENT*/}
 
             <Link to="/" className="hover:text-psuPugh">Home</Link>
+            
+            {/*
             <Link to="/studentSetup" className="hover:text-psuPugh">Student</Link>
             <Link to="/faculty" className="hover:text-psuPugh">Faculty</Link>
             <Link to="/admin" className="hover:text-psuPugh">Admin</Link>
+            */}
 
             <Link to="/login" className="hover:text-psuPugh">Login Temp</Link>
             <Link to="/about" className="hover:text-psuPugh">About</Link>
+            <Link to="/studentcoursefetch" className="hover:text-psuPugh">Student and Course Fetch Demo</Link>
+
+
+            
           </div>
         </nav>
       </header>

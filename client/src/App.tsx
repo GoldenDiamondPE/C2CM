@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
-import Home from './pages/Home';
+import StudentCourseFetch from './pages/StudentCourseFetch';
 import About from './pages/About';
 import Login from './pages/Login';
 import LoginMain from './pages/LoginMain';
@@ -25,6 +25,7 @@ const router = createBrowserRouter([
       { path: "faculty", element: <Faculty /> },
       { path: "admin", element: <Admin /> },
       { path: "studentSetup", element: <StudentSetup /> },
+      { path: "studentcoursefetch", element: <StudentCourseFetch /> },
       
     ],
   },
