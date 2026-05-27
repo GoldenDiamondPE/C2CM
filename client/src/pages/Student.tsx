@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export default function Home() {
+  {*/
   const [name, setName] = useState('');
   const [programs, setPrograms] = useState<Major[]>([]);
   const [selected, setSelected] = useState<string>('');
+  
 
   const handleSave = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -31,7 +33,7 @@ export default function Home() {
     program: string;
     campuses?: string[]; // Optional if some entries don't have campuses
   }
-
+*/}
   return (
     <div>
       <Helmet>
