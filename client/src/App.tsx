@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
 import StudentCourseFetch from './pages/StudentCourseFetch';
+//import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
 import LoginMain from './pages/LoginMain';
