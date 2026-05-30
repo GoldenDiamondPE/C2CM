@@ -1,0 +1,24 @@
+import { Helmet } from 'react-helmet-async';
+
+export default function Home() {
+  return (
+    <div>
+      <Helmet>
+        <title>All Pages | C2CM</title>
+      </Helmet>
+      <h1 className='text-center text-4xl font-bold mb-5'>About</h1>
+      
+      <div className="flex flex-col gap-2">
+        <a href="/about" className="hover:text-psuPugh">About</a>
+        <a href="/admin" className="hover:text-psuPugh">Admin</a>
+        <a href="/allpages" className="hover:text-psuPugh">All Pages</a>
+        <a href="/faculty" className="hover:text-psuPugh">Faculty</a>
+        <a href="/loginmain" className="hover:text-psuPugh">Login Main</a>
+        <a href="/logintemp" className="hover:text-psuPugh">Login Temp</a>
+        <a href="/student" className="hover:text-psuPugh">Student</a>
+        <a href="/studentcoursefetch" className="hover:text-psuPugh">Student and Course Fetch Demo</a>
+        <a href="/studentsetup" className="hover:text-psuPugh">Student Setup</a>
+      </div>
+    </div>
+  );
+}

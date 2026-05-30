@@ -19,9 +19,9 @@ export default function RootLayout() {
             <Link to="/admin" className="hover:text-psuPugh">Admin</Link>
             */}
 
-            <Link to="/login" className="hover:text-psuPugh">Login Temp</Link>
             <Link to="/about" className="hover:text-psuPugh">About</Link>
             <Link to="/studentcoursefetch" className="hover:text-psuPugh">Student and Course Fetch Demo</Link>
+            <Link to="/allpages" className="hover:text-psuPugh">All Pages</Link>
 
 
             

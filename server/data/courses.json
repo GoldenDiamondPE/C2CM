@@ -1,118 +1,122 @@
-{
-    "courses": [
-    {
-      "id": 11,
-      "name": "Big Data Processing",
-      "skills_covered": ["Hadoop", "Spark", "Python"],
-      "prerequisites": ["CS107: Data Management"]
-    },
-    {
-      "id": 12,
-      "name": "Front End Development",
-      "skills_covered": ["HTML", "CSS", "JavaScript"],
-      "prerequisites": ["CS104: Web Technologies"]
-    },
-    {
-      "id": 9,
-      "name": "Cybersecurity Essentials",
-      "skills_covered": ["Cybersecurity", "Encryption", "Python"],
-      "prerequisites": ["CS105: Network Security"]
-    },
-    {
-      "id": 18,
-      "name": "Systems Architecture",
-      "skills_covered": ["System Design", "Cloud Computing", "Java"],
-      "prerequisites": ["CS112: Software Architecture"]
-    },
-    {
-      "id": 19,
-      "name": "Web Security",
-      "skills_covered": ["Web Security", "JavaScript", "SQL"],
-      "prerequisites": ["CS105: Network Security"]
-    },
-    {
-      "id": 15,
-      "name": "Mobile App Development",
-      "skills_covered": ["Swift", "Android", "Java"],
-      "prerequisites": ["CS110: Mobile Platforms"]
-    },
-    {
-      "id": 3,
-      "name": "Cloud Computing Fundamentals",
-      "skills_covered": ["Cloud Computing", "AWS", "Python"],
-      "prerequisites": ["CS102: Operating Systems"]
-    },
-    {
-      "id": 16,
-      "name": "Database Systems",
-      "skills_covered": ["SQL", "MySQL", "Data Modeling"],
-      "prerequisites": ["CS111: Database Fundamentals"]
-    },
-    {
-      "id": 7,
-      "name": "Full Stack Web Development",
-      "skills_covered": ["JavaScript", "React", "Node.js"],
-      "prerequisites": ["CS104: Web Technologies"]
-    },
-    {
-      "id": 6,
-      "name": "Data Analysis Techniques",
-      "skills_covered": ["SQL", "Python", "Data Analysis"],
-      "prerequisites": ["CS101: Introduction to Programming"]
-    },
-    {
-      "id": 20,
-      "name": "Computer Vision",
-      "skills_covered": ["Computer Vision", "OpenCV", "Python"],
-      "prerequisites": ["CS201: Machine Learning 101"]
-    },
-    {
-      "id": 17,
-      "name": "AI Ethics and Society",
-      "skills_covered": ["Ethics in AI", "Machine Learning", "Python"],
-      "prerequisites": ["CS201: Machine Learning 101"]
-    },
-    {
-      "id": 5,
-      "name": "DevOps Practices",
-      "skills_covered": ["Docker", "Kubernetes", "CI/CD"],
-      "prerequisites": ["CS103: Software Engineering"]
-    },
-    {
-      "id": 8,
-      "name": "AI Research Methods",
-      "skills_covered": ["PyTorch", "Machine Learning", "Python"],
-      "prerequisites": ["CS201: Machine Learning 101"]
-    },
-    {
-      "id": 14,
-      "name": "Blockchain Technology",
-      "skills_covered": ["Solidity", "Ethereum", "Smart Contracts"],
-      "prerequisites": ["CS109: Cryptography"]
-    },
-    {
-      "id": 10,
-      "name": "Backend Development",
-      "skills_covered": ["Java", "Spring Boot", "SQL"],
-      "prerequisites": ["CS106: Object-Oriented Programming"]
-    },
-    {
-      "id": 1,
-      "name": "Machine Learning 101",
-      "skills_covered": ["Python", "Neural Networks", "Machine Learning"],
-      "prerequisites": ["CS101: Introduction to Programming"]
-    },
-    {
-      "id": 2,
-      "name": "Data Structures and Algorithms",
-      "skills_covered": ["Algorithms", "Data Structures", "Java"],
-      "prerequisites": []
-    },
-    {
-      "id": 4,
-      "name": "Deep Learning Applications",
-      "skills_covered": ["TensorFlow", "Deep Learning", "Python"],
-      "prerequisites": ["CS201: Machine Learning 101"]
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "Machine Learning 101",
+    "skills_covered": ["Python", "Neural Networks", "Machine Learning"],
+    "prerequisites": ["CS101: Introduction to Programming"]
+  },
+  {
+    "id": 2,
+    "name": "Data Structures and Algorithms",
+    "skills_covered": ["Algorithms", "Data Structures", "Java"],
+    "prerequisites": []
+  },
+  {
+    "id": 3,
+    "name": "Cloud Computing Fundamentals",
+    "skills_covered": ["Cloud Computing", "AWS", "Python"],
+    "prerequisites": ["CS102: Operating Systems"]
+  },
+  {
+    "id": 4,
+    "name": "Deep Learning Applications",
+    "skills_covered": ["TensorFlow", "Deep Learning", "Python"],
+    "prerequisites": ["CS201: Machine Learning 101"]
+  },
+  {
+    "id": 5,
+    "name": "DevOps Practices",
+    "skills_covered": ["Docker", "Kubernetes", "CI/CD"],
+    "prerequisites": ["CS103: Software Engineering"]
+  },
+  {
+    "id": 6,
+    "name": "Data Analysis Techniques",
+    "skills_covered": ["SQL", "Python", "Data Analysis"],
+    "prerequisites": ["CS101: Introduction to Programming"]
+  },
+  {
+    "id": 7,
+    "name": "Full Stack Web Development",
+    "skills_covered": ["JavaScript", "React", "Node.js"],
+    "prerequisites": ["CS104: Web Technologies"]
+  },
+  {
+    "id": 8,
+    "name": "AI Research Methods",
+    "skills_covered": ["PyTorch", "Machine Learning", "Python"],
+    "prerequisites": ["CS201: Machine Learning 101"]
+  },
+  {
+    "id": 9,
+    "name": "Cybersecurity Essentials",
+    "skills_covered": ["Cybersecurity", "Encryption", "Python"],
+    "prerequisites": ["CS105: Network Security"]
+  },
+  {
+    "id": 10,
+    "name": "Backend Development",
+    "skills_covered": ["Java", "Spring Boot", "SQL"],
+    "prerequisites": ["CS106: Object-Oriented Programming"]
+  },
+  {
+    "id": 11,
+    "name": "Big Data Processing",
+    "skills_covered": ["Hadoop", "Spark", "Python"],
+    "prerequisites": ["CS107: Data Management"]
+  },
+  {
+    "id": 12,
+    "name": "Front End Development",
+    "skills_covered": ["HTML", "CSS", "JavaScript"],
+    "prerequisites": ["CS104: Web Technologies"]
+  },
+  {
+    "id": 13,
+    "name": "Network Systems",
+    "skills_covered": ["Networking", "Cisco", "Linux"],
+    "prerequisites": ["CS108: Computer Networks"]
+  },
+  {
+    "id": 14,
+    "name": "Blockchain Technology",
+    "skills_covered": ["Solidity", "Ethereum", "Smart Contracts"],
+    "prerequisites": ["CS109: Cryptography"]
+  },
+  {
+    "id": 15,
+    "name": "Mobile App Development",
+    "skills_covered": ["Swift", "Android", "Java"],
+    "prerequisites": ["CS110: Mobile Platforms"]
+  },
+  {
+    "id": 16,
+    "name": "Database Systems",
+    "skills_covered": ["SQL", "MySQL", "Data Modeling"],
+    "prerequisites": ["CS111: Database Fundamentals"]
+  },
+  {
+    "id": 17,
+    "name": "AI Ethics and Society",
+    "skills_covered": ["Ethics in AI", "Machine Learning", "Python"],
+    "prerequisites": ["CS201: Machine Learning 101"]
+  },
+  {
+    "id": 18,
+    "name": "Systems Architecture",
+    "skills_covered": ["System Design", "Cloud Computing", "Java"],
+    "prerequisites": ["CS112: Software Architecture"]
+  },
+  {
+    "id": 19,
+    "name": "Web Security",
+    "skills_covered": ["Web Security", "JavaScript", "SQL"],
+    "prerequisites": ["CS105: Network Security"]
+  },
+  {
+    "id": 20,
+    "name": "Computer Vision",
+    "skills_covered": ["Computer Vision", "OpenCV", "Python"],
+    "prerequisites": ["CS201: Machine Learning 101"]
+  }
+]
