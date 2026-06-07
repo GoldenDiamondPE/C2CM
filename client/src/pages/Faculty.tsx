@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-
+/*
 // student interface that can be used to store the retrieved students information
 interface Student {
   first_name: string;
@@ -13,6 +13,7 @@ interface Student {
   skills: string[];
   additional_skills: string[];
 }
+
 // fake student object used to test the display of the students information
 const mockStudent: Student = {
   first_name: "John",
@@ -26,7 +27,7 @@ const mockStudent: Student = {
   skills: ["Python", "JavaScript","C"],
   additional_skills: ["Java", "C++"]
 };
-
+*/
 export default function Home() {
   return (
     <div>
