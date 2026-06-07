@@ -44,10 +44,6 @@ export default function Home() {
               <input type="radio" name="role" value="faculty" required/>Faculty</label>
           </div>
 
-
- 
-
-
           <div className="boxContainer gap-10">
             <button type="submit" className="w-full mt-10 rounded-md bg-psuBeaver px-3 py-3 text-lg font-semibold text-white hover:bg-psuNittany transition-colors">
             Add User
@@ -58,7 +54,6 @@ export default function Home() {
             </button>
 
           </div>
-          
         </form>
       </div> 
     </div>

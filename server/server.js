@@ -13,8 +13,6 @@ const majorsdb = path.join(__dirname, 'data', 'undergradMajors.json');
 const minorsdb = path.join(__dirname, 'data', 'undergradMinors.json');
 const skillsdb = path.join(__dirname, 'data', 'skills.json');
 
-
-
 // middleware
 app.use(express.json());
 
@@ -24,7 +22,6 @@ app.use(cors({
     "coursestocareerpathmapperwa-e5gbh3grh6a6fxbj.eastus-01.azurewebsites.net"
   ],
 }));
-
 
 // Get all students
 app.get("/api/students", async (req, res) => {
@@ -76,23 +73,66 @@ app.get('/api/skills', async (req, res) => {
   }
 });
 
-// 3. Add a course ID to a student's class list
-app.post("/api/enroll", async (req, res) => {
-  const { studentName, courseId } = req.body;
 
-  // FIXED: Now uses the studentsdb variable
-  const rawData = await fs.readFile(studentsdb, "utf8");
-  const data = JSON.parse(rawData);
 
-  // Find student and push the course integer ID
-  const student = data.students.find(s => s.name === studentName);
-  student.classes.push(parseInt(courseId));
 
-  // FIXED: Now uses the studentsdb variable
-  await fs.writeFile(studentsdb, JSON.stringify(data, null, 2));
 
-  res.json(student);
+
+app.post('/api/students/append', async (req, res) => {
+  const newStudents = req.body.students;
+
+  if (!newStudents || !Array.isArray(newStudents)) {
+    return res.status(400).json({ error: "Invalid format. Expected an object with a 'students' array." });
+  }
+
+  try {
+    const fileData = await fs.readFile(studentsdb, 'utf8');
+    const existingStudents = JSON.parse(fileData);
+
+    //Check existing IDs
+    const existingIds = new Set(existingStudents.map(s => s.id));
+    const duplicateIdsInPayload = new Set();
+    const validatedNewStudents = [];
+
+    for (const student of newStudents) {
+      const { id, course, skills, major, password } = student;
+
+      // Ensure required fields exist
+      if (!id || !course || !skills || !major || !password) {
+        return res.status(400).json({ error: `Student missing required fields: ${JSON.stringify(student)}` });
+      }
+
+      // Check against already existing IDs OR duplicates within the uploaded file itself
+      if (existingIds.has(id) || duplicateIdsInPayload.has(id)) {
+        return res.status(400).json({ error: `Duplicate ID detected: Student ID '${id}' already exists.` });
+      }
+
+      duplicateIdsInPayload.add(id);
+      validatedNewStudents.push({ id, course, skills, major, password });
+    }
+
+    // Append and Save
+    const updatedStudents = [...existingStudents, ...validatedNewStudents];
+    await fs.writeFile(studentsdb, JSON.stringify(updatedStudents, null, 2), 'utf8');
+
+    res.status(200).json({ 
+      message: 'Students successfully appended!', 
+      countAdded: validatedNewStudents.length 
+    });
+
+  } catch (error) {
+    console.error("Error processing file:", error);
+    res.status(500).json({ error: 'Internal server error while processing data.' });
+  }
 });
+
+
+
+
+
+
+
+
 
 
 // serve frontend (for production build)

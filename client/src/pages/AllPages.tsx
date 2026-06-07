@@ -13,6 +13,7 @@ export default function Home() {
         <a href="/admin" className="hover:text-psuPugh">Admin</a>
         <a href="/allpages" className="hover:text-psuPugh">All Pages</a>
         <a href="/faculty" className="hover:text-psuPugh">Faculty</a>
+        <a href="/fileupload" className="hover:text-psuPugh">File Upload</a>
         <a href="/loginmain" className="hover:text-psuPugh">Login Main</a>
         <a href="/logintemp" className="hover:text-psuPugh">Login Temp</a>
         <a href="/student" className="hover:text-psuPugh">Student</a>

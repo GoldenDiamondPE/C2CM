@@ -1,23 +1,26 @@
-{
-  "students": [
-    {
-      "name": "Brandon Bula",
-      "major": "Computer Science",
-      "advisorID": "George",
-      "classes": [
-        11,
-        12
-      ],
-      "jobs": "Downingtown Technology"
-    },
-    {
-      "name": "John Doe",
-      "major": "Computer Science",
-      "advisorID": "Smith",
-      "classes": [
-        9
-      ],
-      "jobs": "Tech Solutions"
-    }
-  ]
-}
+[
+  {
+    "id": "bab6939",
+    "major": "Computer Science",
+    "course": "Computer Science",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js"
+    ],
+    "password": "",
+    "secretID": ""
+  },
+  {
+    "id": "STU102",
+    "major": "Computer Science",
+    "course": "Data Science",
+    "skills": [
+      "Python",
+      "SQL",
+      "Pandas"
+    ],
+    "password": "",
+    "secretID": ""
+  }
+]

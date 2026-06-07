@@ -23,7 +23,6 @@ export default function Home() {
 
 
   useEffect(() => {
-    // Relative paths ensure it works on Azure and through Vite's proxy
     fetch('/api/majors')
       .then((res) => res.json())
       .then((data) => setMajors(data))
@@ -200,7 +199,7 @@ export default function Home() {
               value={formData.middleName}
               onChange={(e) => setFormData({...formData, middleName: e.target.value})}
               className="textFieldBox"
-              placeholder="CMPSC101,MATH140"
+              placeholder="Algorithms,Android,AWS"
             />
           </div>
 
@@ -212,18 +211,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
-/*
-@student name: (First) (Middle initial) (Last name) [text fields] 
-@Student id: textfield 
-@Major field of study: (drop down menu) 
-@Minor field of study: (drop down menu) 
-@Courses taken: Allow students to select courses using radio buttons; pre-load the courses they should be taking by programs 
-@Additional courses taken: text area (enter all courses taken separating each of them with comma) 
-skills acquired: Allow students to select skills using radio buttons; pre-load the necessary skills related to their programs 
-Additional acquired skills: text area (enter all acquired skills separating each of them with comma) 
- 
-[Submit button]
-*/
