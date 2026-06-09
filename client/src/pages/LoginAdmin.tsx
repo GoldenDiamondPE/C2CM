@@ -1,14 +1,15 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
     <div>
       <Helmet>
-        <title>Login Temp | C2CM</title>
+        <title>Login Admin | C2CM</title>
       </Helmet>
 
       <div className="mx-auto mt-15 w-full max-w-lg rounded-xl p-6 text-black border-8 border-psuBeaver">
-        <p className="text-3xl font-bold text-center pb-5">Login</p>
+        <p className="text-3xl font-bold text-center pb-5">Admin Login</p>
 
         <form action="#" method="POST" className="space-y-6">
             <div pb-5>
@@ -49,8 +50,10 @@ export default function Home() {
             </div> {/*Password*/}
           
 
-            <div>
-              <button type="submit" className="flex w-full justify-center rounded-md bg-psuBeaver px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign in</button>
+             <div>
+              {/*<button type="submit" className="flex w-full justify-center rounded-md bg-psuBeaver px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign in</button>
+              */}
+              <Link to="/admin" className="flex w-full text-3xl font-semibold text-center pb-5 bg-psuBeaver hover:bg-psuNittany px-10 py-3 rounded-lg inline-block transition text-white">Sign In</Link>
             </div> {/*Button*/}
 
         </form>{/*Email + Password + Button*/}

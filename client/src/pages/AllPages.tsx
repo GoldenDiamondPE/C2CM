@@ -15,7 +15,9 @@ export default function Home() {
         <a href="/faculty" className="hover:text-psuPugh">Faculty</a>
         <a href="/fileupload" className="hover:text-psuPugh">File Upload</a>
         <a href="/loginmain" className="hover:text-psuPugh">Login Main</a>
-        <a href="/logintemp" className="hover:text-psuPugh">Login Temp</a>
+        <a href="/loginstudent" className="hover:text-psuPugh">Login Student</a>
+        <a href="/loginadmin" className="hover:text-psuPugh">Login Admin</a>
+        <a href="/loginfaculty" className="hover:text-psuPugh">Login Faculty</a>
         <a href="/student" className="hover:text-psuPugh">Student</a>
         <a href="/studentcoursefetch" className="hover:text-psuPugh">Student and Course Fetch Demo</a>
         <a href="/studentsetup" className="hover:text-psuPugh">Student Setup</a>

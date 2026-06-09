@@ -7,7 +7,9 @@ import AllPages from './pages/AllPages';
 import Faculty from './pages/Faculty';
 import FileUpload from './pages/FileUpload';
 import LoginMain from './pages/LoginMain';
-import LoginTemp from './pages/LoginTemp';
+import LoginStudent from './pages/LoginStudent';
+import LoginAdmin from './pages/LoginAdmin';
+import LoginFaculty from './pages/LoginFaculty';
 import Student from './pages/Student';
 import StudentCourseFetch from './pages/StudentCourseFetch';
 import StudentSetup from './pages/StudentSetup';
@@ -25,7 +27,9 @@ const router = createBrowserRouter([
       { path: "faculty", element: <Faculty /> },
       { path: "fileupload", element: <FileUpload />},
       { path: "loginmain", element: <LoginMain /> },
-      { path: "logintemp", element: <LoginTemp /> },
+      { path: "loginstudent", element: <LoginStudent /> },
+      { path: "loginadmin", element: <LoginAdmin /> },
+      { path: "loginfaculty", element: <LoginFaculty /> },
       { path: "student", element: <Student /> },
       { path: "studentcoursefetch", element: <StudentCourseFetch /> },
       { path: "studentSetup", element: <StudentSetup /> }, 
