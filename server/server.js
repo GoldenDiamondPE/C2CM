@@ -3,6 +3,10 @@ const path = require("path");
 const cors = require("cors");
 const fs = require("fs").promises;
 
+const mongoose = require("mongoose");
+
+require("dotenv").config();
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -16,12 +20,33 @@ const skillsdb = path.join(__dirname, 'data', 'skills.json');
 // middleware
 app.use(express.json());
 
+//Start MongoDB
+
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
     "coursestocareerpathmapperwa-e5gbh3grh6a6fxbj.eastus-01.azurewebsites.net"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+app.use("/api/auth", require("./routes/auth"));
+
+
+
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log("MongoDB connected");
+    })
+    .catch((err) => {
+        console.error("MongoDB connection error:", err);
+    });
+
+
+//End MongoDB
+
 
 // Get all students
 app.get("/api/students", async (req, res) => {
@@ -74,10 +99,6 @@ app.get('/api/skills', async (req, res) => {
 });
 
 
-
-
-
-
 app.post('/api/students/append', async (req, res) => {
   const newStudents = req.body.students;
 
@@ -125,15 +146,6 @@ app.post('/api/students/append', async (req, res) => {
     res.status(500).json({ error: 'Internal server error while processing data.' });
   }
 });
-
-
-
-
-
-
-
-
-
 
 // serve frontend (for production build)
 app.use(express.static(path.join(__dirname, "../client/dist")));

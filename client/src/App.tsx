@@ -7,6 +7,7 @@ import AllPages from './pages/AllPages';
 import Faculty from './pages/Faculty';
 import FileUpload from './pages/FileUpload';
 import LoginMain from './pages/LoginMain';
+import Register from './pages/Register';
 import LoginStudent from './pages/LoginStudent';
 import LoginAdmin from './pages/LoginAdmin';
 import LoginFaculty from './pages/LoginFaculty';
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "allpages", element: <AllPages /> },
       { path: "faculty", element: <Faculty /> },
       { path: "fileupload", element: <FileUpload />},
+      { path: "register", element: <Register /> },
       { path: "loginmain", element: <LoginMain /> },
       { path: "loginstudent", element: <LoginStudent /> },
       { path: "loginadmin", element: <LoginAdmin /> },

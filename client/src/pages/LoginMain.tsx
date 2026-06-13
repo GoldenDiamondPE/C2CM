@@ -1,6 +1,29 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 export default function Home() {
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const role = localStorage.getItem("role");
+
+    if (isLoggedIn === "true") {
+      if (role === "admin") navigate("/admin");
+      else if (role === "faculty") navigate("/faculty");
+      else navigate("/student");
+    }
+
+    setLoading(false);
+  }, []);
+
+  if (loading) return null;
+
   return (
     <div>
       <Helmet>
@@ -16,6 +39,12 @@ export default function Home() {
             <Link to="/loginfaculty" className="text-3xl font-semibold text-center pb-5 bg-psuBeaver hover:bg-psuNittany px-10 py-3 rounded-lg inline-block transition text-white">Faculty Login</Link>
 
             <Link to="/loginadmin" className="text-3xl font-semibold text-center pb-5 bg-psuBeaver hover:bg-psuNittany px-10 py-3 rounded-lg inline-block transition text-white">Admin Login</Link>
+      </div>
+
+      <p className='text-center text-2xl'>If you do not already have an account register a new one.</p>
+
+      <div className="mx-auto flex justify-center items-center min-h-30 gap-55 p-4">
+            <Link to="/register" className="text-3xl font-semibold text-center pb-5 bg-psuBeaver hover:bg-psuNittany px-10 py-3 rounded-lg inline-block transition text-white">Register</Link>
       </div>
 
     </div>
