@@ -10,6 +10,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("API URL:", import.meta.env.VITE_API_URL);
+    
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     const role = localStorage.getItem("role");
 
