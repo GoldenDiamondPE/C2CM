@@ -1,19 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 export default function RootLayout() {
   const navigate = useNavigate()
-
-  const email = localStorage.getItem("email");
-  const role = localStorage.getItem("role");
-
-  const [user, setUser] = useState({
-    email: localStorage.getItem("email"),
-    role: localStorage.getItem("role"),
-    isLoggedIn: localStorage.getItem("isLoggedIn") === "true",
-  });
-
 
   function handleLogout() {
     localStorage.clear();
