@@ -41,6 +41,12 @@ export default function Home() {
             <Link to="/loginadmin" className="text-3xl font-semibold text-center pb-5 bg-psuBeaver hover:bg-psuNittany px-10 py-3 rounded-lg inline-block transition text-white">Admin Login</Link>
       </div>
 
+      <p className='text-center text-2xl'>If you do not already have an account register a new one.</p>
+
+      <div className="mx-auto flex justify-center items-center min-h-30 gap-55 p-4">
+            <Link to="/register" className="text-3xl font-semibold text-center pb-5 bg-psuBeaver hover:bg-psuNittany px-10 py-3 rounded-lg inline-block transition text-white">Register</Link>
+      </div>
+
     </div>
 
     
