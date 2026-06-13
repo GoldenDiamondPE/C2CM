@@ -1,6 +1,29 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 export default function Home() {
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const role = localStorage.getItem("role");
+
+    if (isLoggedIn === "true") {
+      if (role === "admin") navigate("/admin");
+      else if (role === "faculty") navigate("/faculty");
+      else navigate("/student");
+    }
+
+    setLoading(false);
+  }, []);
+
+  if (loading) return null;
+
   return (
     <div>
       <Helmet>

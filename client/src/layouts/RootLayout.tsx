@@ -1,6 +1,25 @@
 import { Link, Outlet } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function RootLayout() {
+  const navigate = useNavigate()
+
+  const email = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
+
+  const [user, setUser] = useState({
+    email: localStorage.getItem("email"),
+    role: localStorage.getItem("role"),
+    isLoggedIn: localStorage.getItem("isLoggedIn") === "true",
+  });
+
+
+  function handleLogout() {
+    localStorage.clear();
+    navigate("/");
+  }
+
   return (
     <div className="flex flex-col min-h-svh">
       
@@ -21,8 +40,19 @@ export default function RootLayout() {
       </main>
 
       {/*Footer*/}
-      <footer className="p-4 bg-psuBeaver text-gray-300 text-center">
-        Course to Carrer Path Mapper PSU
+      <footer className="p-4 bg-psuBeaver text-white flex justify-end items-center gap-4">
+        {/*{email && ( todo add this back later
+          <>
+            <span>
+              Logged in as: <strong>{email}</strong> ({role})     
+            </span>
+          </>
+        )}*/}
+            <button
+                onClick={handleLogout}
+                className="hover:text-psuPugh">
+                Logout
+            </button>
       </footer>
 
     </div>
