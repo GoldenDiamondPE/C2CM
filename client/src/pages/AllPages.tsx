@@ -20,7 +20,6 @@ export default function Home() {
         <a href="/loginfaculty" className="hover:text-psuPugh">Login Faculty</a>
         <a href="/student" className="hover:text-psuPugh">Student</a>
         <a href="/studentcoursefetch" className="hover:text-psuPugh">Student and Course Fetch Demo</a>
-        <a href="/studentsetup" className="hover:text-psuPugh">Student Setup</a>
       </div>
     </div>
   );
