@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from "react-router-dom";
 
 interface User {
   _id: string;
@@ -10,8 +9,6 @@ interface User {
 
 export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
-
-  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
