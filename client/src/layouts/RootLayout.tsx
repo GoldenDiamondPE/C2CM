@@ -9,7 +9,7 @@ export default function RootLayout() {
   function handleLogout() {
     localStorage.clear();
     navigate("/");
-    window.location.reload();//reload the footer to remove the logged-in user display
+    //window.location.reload();//reload the footer to remove the logged-in user display
   }
 
   return (
@@ -34,13 +34,13 @@ export default function RootLayout() {
       {/*Footer*/}
       <footer className="p-4 bg-psuBeaver text-white flex justify-end items-center gap-4">
         {/* Show the logged-in user's email */}
-        {email && (
+        {/*email && (
           <>
             <span>
               Logged in as: <strong>{email}</strong> 
             </span>
           </>
-        )}
+        )*/}
             <button
                 onClick={handleLogout}
                 className="hover:text-psuPugh">

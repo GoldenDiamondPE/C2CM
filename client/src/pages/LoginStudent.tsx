@@ -43,7 +43,7 @@ export default function Home() {
     } else {
       navigate("/student");
     }
-    window.location.reload();//reload the footer to remove the logged-in user display
+    //window.location.reload();//reload the footer to remove the logged-in user display
   }
   return (
     <div>
