@@ -34,9 +34,8 @@ app.use(cors({
 
 
 
-const dbURI = process.env.MONGO_URI || 'mongodb+srv://admin:BRQhyKf7njJropQk@mongocluster.znmd0x5.mongodb.net/?appName=MongoCluster';
 
-mongoose.connect(dbURI)
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB connected");
     })
