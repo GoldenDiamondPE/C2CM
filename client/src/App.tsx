@@ -11,7 +11,6 @@ import Register from './pages/Register';
 import LoginStudent from './pages/LoginStudent';
 import LoginAdmin from './pages/LoginAdmin';
 import LoginFaculty from './pages/LoginFaculty';
-import Student from './pages/Student';
 import StudentCourseFetch from './pages/StudentCourseFetch';
 import StudentSetup from './pages/StudentSetup';
 import Demo from './pages/zDemo';
@@ -31,10 +30,8 @@ const router = createBrowserRouter([
       { path: "loginstudent", element: <LoginStudent /> },
       { path: "loginadmin", element: <LoginAdmin /> },
       { path: "loginfaculty", element: <LoginFaculty /> },
-      { path: "register", element: <Register /> },
-      { path: "student", element: <Student /> },
       { path: "studentcoursefetch", element: <StudentCourseFetch /> },
-      { path: "studentSetup", element: <StudentSetup /> }, 
+      { path: "student", element: <StudentSetup /> }, 
       { path: "demo", element: <Demo /> },
     ],
   },
