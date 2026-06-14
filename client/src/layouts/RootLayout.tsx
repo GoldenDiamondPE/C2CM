@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function RootLayout() {
   const navigate = useNavigate()
 
-  const email = localStorage.getItem("email");
+  //const email = localStorage.getItem("email");
 
   function handleLogout() {
     localStorage.clear();
