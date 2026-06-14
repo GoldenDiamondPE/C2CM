@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 export default function RootLayout() {
   const navigate = useNavigate()
 
+  const email = localStorage.getItem("email");
+
   function handleLogout() {
     localStorage.clear();
     navigate("/");
+    window.location.reload();//reload the footer to remove the logged-in user display
   }
 
   return (
@@ -30,13 +33,14 @@ export default function RootLayout() {
 
       {/*Footer*/}
       <footer className="p-4 bg-psuBeaver text-white flex justify-end items-center gap-4">
-        {/*{email && ( todo add this back later
+        {/* Show the logged-in user's email */}
+        {email && (
           <>
             <span>
-              Logged in as: <strong>{email}</strong> ({role})     
+              Logged in as: <strong>{email}</strong> 
             </span>
           </>
-        )}*/}
+        )}
             <button
                 onClick={handleLogout}
                 className="hover:text-psuPugh">

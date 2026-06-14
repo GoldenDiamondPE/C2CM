@@ -43,6 +43,7 @@ export default function Home() {
       if (role === "admin") navigate("/admin");
       else if (role === "faculty") navigate("/faculty");
       else navigate("/student");
+      window.location.reload();//reload the footer to show the logged-in user display
 
     } catch (error) {
       console.error(error);
