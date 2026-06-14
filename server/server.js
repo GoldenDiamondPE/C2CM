@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -5,7 +6,6 @@ const fs = require("fs").promises;
 
 const mongoose = require("mongoose");
 
-require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -32,11 +32,11 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
-app.use("/api/auth", require("./routes/auth"));
 
 
+const dbURI = process.env.MONGO_URI || 'mongodb+srv://admin:BRQhyKf7njJropQk@mongocluster.znmd0x5.mongodb.net/?appName=MongoCluster';
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(dbURI)
     .then(() => {
         console.log("MongoDB connected");
     })
@@ -46,6 +46,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 //End MongoDB
+app.use("/api/auth", require("./routes/auth"));
 
 
 // Get all students
