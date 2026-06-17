@@ -14,8 +14,7 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student");
 
-  useEffect(() => {
-    async function fetchUsers() {
+  async function fetchUsers() {
       try {
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/api/auth/users`
@@ -32,8 +31,9 @@ export default function Home() {
       } catch (error) {
         console.error(error);
       }
-    }
+  }
 
+  useEffect(() => {
     fetchUsers();
   }, []);
 
@@ -51,7 +51,42 @@ export default function Home() {
       }
 
       // Remove the deleted user from the state
-      setUsers(users.filter((user) => user._id !== id));
+      fetchUsers();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function editUser(id: string) {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/users/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          role,
+        }),
+      });
+
+      const data = await res.json();
+      
+      if (!res.ok) {
+        console.error(data.message);
+        return;
+      }
+
+      fetchUsers();
+      setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user._id === id
+          ? { ...user, email, role } // update only changed fields
+          : user
+      )
+    );
+
     } catch (error) {
       console.error(error);
     }
@@ -109,7 +144,7 @@ export default function Home() {
       <Helmet>
         <title>Admin | C2CM</title>
       </Helmet>
-      <h1 className='text-center text-4xl font-bold mb-5'>WIP Admin Account Management WIP</h1>
+      <h1 className='text-center text-4xl font-bold mb-5'>Admin Account Management</h1>
       <div className="flex justify-center gap-25">
         <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
             <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Account Information</p>
@@ -135,9 +170,12 @@ export default function Home() {
                         {user.role}
                       </td>
 
-                      <td className="border p-3">
+                      <td className="flex gap-2 border p-3">
                         <button onClick={() => deleteUser(user._id)} className="flex text-xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-5 py-2 rounded-lg inline-block transition text-white">
                           Delete
+                        </button>
+                        <button onClick={() => editUser(user._id)} className="flex text-xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-5 py-2 rounded-lg inline-block transition text-white">
+                          Edit
                         </button>
                       </td>
                     </tr>
@@ -153,7 +191,7 @@ export default function Home() {
             )}
         </div>
         <div className="my-auto mt-15 w-100 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
-          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Register Accounts</p>
+          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Register/Edit Accounts</p>
           <form onSubmit={handleRegister} className="space-y-6">
             <div className="pb-5">
               <label htmlFor="email" className="block text-sm font-medium text-psuBeaver">
