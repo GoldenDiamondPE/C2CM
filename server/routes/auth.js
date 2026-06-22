@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
+const Student = require("../models/student");
 
 
 // Login to an existing account
@@ -158,7 +159,33 @@ router.put("/users/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+// Get a student by studentid
+router.get("/students/:studentid", async (req, res) => {
+  try {
+    const studentid = req.params.studentid;
+    const student = await Student.findOne({ _studentid: String(studentid) }).lean();
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+      const cleaned = { student };
+      ["courses", "additionalcourses", "skills", "additionalskills"].forEach(
+        (field) => {
+          if (Array.isArray(cleaned[field]) && cleaned[field].length === 0) {
+            delete cleaned[field];
+          }
+        }
+      );
+      res.json(cleaned);
+    } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Server error."
+    });
+  }
+});
 
+
+
+module.exports = router;
 
 
