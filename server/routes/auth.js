@@ -117,6 +117,47 @@ router.delete("/users/:id", async (req, res) => {
   }
 });
 
+// Edit a user
+router.put("/users/:id", async (req, res) => {
+  try {
+    const { email, password, role } = req.body;
+
+    // Basic validation
+    if (!email && !password && !role) {
+      return res.status(400).json({
+        message: "At least one of email, password, or role is required."
+      });
+    }
+
+    // Find the user by ID
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found."
+      });
+    }
+
+    // Update the user's information
+    if (email!=="") user.email = email;
+    if (password!=="") user.password = password;
+    if (role!=="") user.role = role;
+
+    await user.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Account updated successfully."
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Server error."
+    });
+  }
+});
+
 module.exports = router;
 
 
