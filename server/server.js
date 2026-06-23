@@ -73,6 +73,94 @@ app.get("/api/psu-courses-onet", async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+app.post("/api/students/append", async (req, res) => {
+  try {
+    const { students } = req.body;
+
+    if (!students || !Array.isArray(students)) {
+      return res.status(400).json({ error: "Invalid data wrapper. Missing students list." });
+    }
+
+    const db = mongoose.connection.useDb("myapp");
+    const collection = db.collection("students"); 
+
+    // Try a broad swipe: if there are conflicting old indexes, drop them dynamically
+    try {
+      const activeIndexes = await collection.indexes();
+      for (let index of activeIndexes) {
+        // Automatically drop any unique indexes left over from old field names
+        if (index.name !== "_id_" && index.name.includes("_1") && !index.name.startsWith("_")) {
+          await collection.dropIndex(index.name);
+          console.log(`🧹 Dropped legacy constraint index: ${index.name}`);
+        }
+      }
+    } catch (indexErr) {
+      console.log("Index cleanup skipped or unnecessary.");
+    }
+    
+    // Insert documents
+    const result = await collection.insertMany(students, { ordered: false });
+    
+    console.log(`🚀 Successfully bulk-imported ${result.insertedCount} students.`);
+    res.json({ 
+      message: "Upload success!", 
+      countAdded: result.insertedCount 
+    });
+
+  } catch (err) {
+    // 💡 Handle the duplicate key exception gracefully
+    if (err.code === 11000) {
+      const addedCount = err.result?.insertedCount || 0;
+      
+      // If MongoDB threw a duplicate error but still inserted records due to { ordered: false }
+      if (addedCount > 0) {
+        console.log(`🚀 Partial bulk-import complete. Added ${addedCount} new students.`);
+        return res.json({
+          message: "Upload success (skipped duplicates)!",
+          countAdded: addedCount
+        });
+      }
+
+      // If absolutely zero records were inserted due to index conflicts, automatically fix it
+      // by dropping the specific index reported in the error message dynamically
+      const errorMsg = err.errorResponse?.message || err.message || "";
+      const indexMatch = errorMsg.match(/index:\s+(\S+)/);
+      if (indexMatch && indexMatch[1]) {
+        const structuralIndexName = indexMatch[1];
+        try {
+          await mongoose.connection.useDb("myapp").collection("students").dropIndex(structuralIndexName);
+          console.log(`🧹 Dynamically cleared conflicting index: ${structuralIndexName}. Retrying operation...`);
+          
+          // Re-attempt insertion immediately after dropping the exact obstacle index
+          const retryResult = await mongoose.connection.useDb("myapp").collection("students").insertMany(students, { ordered: false });
+          return res.json({
+            message: "Upload success after auto-cleanup!",
+            countAdded: retryResult.insertedCount
+          });
+        } catch (retryErr) {
+          console.error("Auto-cleanup retry failed:", retryErr);
+        }
+      }
+    }
+    
+    console.error("❌ Bulk insert error details:", err);
+    res.status(500).json({ error: "Database storage engine failed to write records." });
+  }
+});
+
+
+
+
+
+
+
 // Get all majors
 app.get('/api/majors', async (req, res) => {
   try {
