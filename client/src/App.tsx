@@ -37,6 +37,7 @@ const router = createBrowserRouter([
       { path: "demo", element: <Demo /> },
       { path: "facultyview", element: <FacultyView /> },
       { path: "coursefetch", element: <CourseFetch /> },
+      { path: "register", element: <Register /> },
 
     ],
   },
