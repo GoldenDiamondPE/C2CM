@@ -25,3 +25,7 @@ dist-ssr
 *.sw?
 *.env
 .DS_Store
+package-lock.json
+package.json
+package-lock.json
+package.json

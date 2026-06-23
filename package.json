@@ -20,6 +20,7 @@
   "type": "commonjs",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.15.2"
+    "axios": "^1.15.2",
+    "dotenv": "^17.4.2"
   }
 }

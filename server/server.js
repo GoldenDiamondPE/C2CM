@@ -21,6 +21,7 @@ const skillsdb = path.join(__dirname, 'data', 'skills.json');
 app.use(express.json());
 
 //Start MongoDB
+const PsuCourseOnetSkill = require("./models/PsuCourseOnet");
 
 
 app.use(cors({
@@ -56,11 +57,21 @@ app.get("/api/students", async (req, res) => {
 });
 
 // Get all courses
-app.get("/api/courses", async (req, res) => {
-  const rawData = await fs.readFile(coursesdb, "utf8");
-  const data = JSON.parse(rawData);
-  res.json(data.courses);
+
+
+
+
+app.get("/api/psu-courses-onet", async (req, res) => {
+  try {
+    const courses = await PsuCourseOnetSkill.find({});
+    res.json(courses);
+  } catch (err) {
+    console.error("Error fetching courses:", err);
+    res.status(500).json({ message: "Server error" });
+  }
 });
+
+
 
 // Get all majors
 app.get('/api/majors', async (req, res) => {

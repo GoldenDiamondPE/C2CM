@@ -15,6 +15,7 @@ import StudentCourseFetch from './pages/StudentCourseFetch';
 import StudentSetup from './pages/StudentSetup';
 import Demo from './pages/zDemo';
 import FacultyView from './pages/FacultyView';
+import CourseFetch from './pages/CourseFetch';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,8 @@ const router = createBrowserRouter([
       { path: "student", element: <StudentSetup /> }, 
       { path: "demo", element: <Demo /> },
       { path: "facultyview", element: <FacultyView /> },
+      { path: "coursefetch", element: <CourseFetch /> },
+
     ],
   },
 ]);
