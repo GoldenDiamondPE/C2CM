@@ -149,7 +149,7 @@ export default function Home() {
         <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
             <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Account Information</p>
 
-            <div className="overflow-x-auto">
+            <div className="max-h-200 overflow-auto">
               <table className="w-full border border-gray-300">
                 <thead>
                   <tr className="bg-gray-100">
