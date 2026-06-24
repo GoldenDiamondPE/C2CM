@@ -30,7 +30,8 @@ router.post("/login", async (req, res) => {
         return res.json({
             success: true,
             role: user.role,
-            email: user.email
+            email: user.email,
+            id: user._id
         });
 
     } catch (err) {
@@ -185,7 +186,4 @@ router.get("/students/:studentid", async (req, res) => {
 });
 
 
-
 module.exports = router;
-
-

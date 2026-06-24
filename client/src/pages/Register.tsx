@@ -39,6 +39,7 @@ export default function Home() {
       // optional: auto-login after register
       localStorage.setItem("email", email);
       localStorage.setItem("role", role);
+      localStorage.setItem("userId", data._id);
       localStorage.setItem("isLoggedIn", "true");
 
       // redirect to appropriate page
@@ -49,7 +50,7 @@ export default function Home() {
 
     } catch (error) {
       console.error(error);
-      alert("Server erroracquired");
+      alert("Server Error");
     }
   }
 

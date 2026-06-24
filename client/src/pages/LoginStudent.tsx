@@ -33,6 +33,7 @@ export default function Home() {
     // store role (simple prototype approach)
     localStorage.setItem("role", data.role);
     localStorage.setItem("email", data.email);
+    localStorage.setItem("userId", data.id);
     localStorage.setItem("isLoggedIn", "true");
 
     // redirect based on role

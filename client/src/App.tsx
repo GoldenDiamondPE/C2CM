@@ -13,6 +13,7 @@ import LoginAdmin from './pages/LoginAdmin';
 import LoginFaculty from './pages/LoginFaculty';
 import StudentCourseFetch from './pages/StudentCourseFetch';
 import StudentSetup from './pages/StudentSetup';
+import StudentMeetingRequest from './pages/StudentMeetingRequest';
 import Demo from './pages/zDemo';
 import FacultyView from './pages/FacultyView';
 import CourseFetch from './pages/CourseFetch';
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       { path: "loginadmin", element: <LoginAdmin /> },
       { path: "loginfaculty", element: <LoginFaculty /> },
       { path: "studentcoursefetch", element: <StudentCourseFetch /> },
-      { path: "student", element: <StudentSetup /> }, 
+      { path: "student", element: <StudentMeetingRequest /> }, 
       { path: "demo", element: <Demo /> },
       { path: "facultyview", element: <FacultyView /> },
       { path: "coursefetch", element: <CourseFetch /> },

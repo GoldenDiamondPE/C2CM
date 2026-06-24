@@ -46,7 +46,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 //End MongoDB
+
+//add routes
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/meetings", require("./routes/meetings"));
 
 
 // Get all students
@@ -57,10 +60,6 @@ app.get("/api/students", async (req, res) => {
 });
 
 // Get all courses
-
-
-
-
 app.get("/api/psu-courses-onet", async (req, res) => {
   try {
     const courses = await PsuCourseOnetSkill.find({});
@@ -71,15 +70,7 @@ app.get("/api/psu-courses-onet", async (req, res) => {
   }
 });
 
-
-
-
-
-
-
-
-
-
+//append a student
 app.post("/api/students/append", async (req, res) => {
   try {
     const { students } = req.body;
@@ -154,12 +145,6 @@ app.post("/api/students/append", async (req, res) => {
     res.status(500).json({ error: "Database storage engine failed to write records." });
   }
 });
-
-
-
-
-
-
 
 // Get all majors
 app.get('/api/majors', async (req, res) => {
