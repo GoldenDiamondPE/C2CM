@@ -14,6 +14,10 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student");
 
+  const [fileName, setFileName] = useState("");
+
+  const [importType, setImportType] = useState("students");
+
   async function fetchUsers() {
       try {
         const res = await fetch(
@@ -139,12 +143,26 @@ export default function Home() {
     }
   }
 
+  async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  }
+
+  async function handleJSONUpload() {
+    if (!fileName) {
+      alert("Please select a JSON file to upload.");
+      return;
+    }
+  }
+
   return (
     <div>
       <Helmet>
         <title>Admin | C2CM</title>
       </Helmet>
-      <h1 className='text-center text-4xl font-bold mb-5'>Admin Account Management</h1>
+      <h1 className='text-center text-4xl font-bold mb-5'>Admin Dashboard</h1>
       <div className="flex justify-center gap-25">
         <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
             <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Account Information</p>
@@ -190,7 +208,8 @@ export default function Home() {
               </p>
             )}
         </div>
-        <div className="my-auto mt-15 w-100 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
+        <div>
+          <div className="my-auto mt-15 w-100 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
           <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Register/Edit Accounts</p>
           <form onSubmit={handleRegister} className="space-y-6">
             <div className="pb-5">
@@ -279,7 +298,49 @@ export default function Home() {
             </div> {/*Button*/}
 
         </form>{/*Email + Password + Button*/}
-        </div> 
+          </div> 
+          <div className="my-auto mt-15 w-100 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
+          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Upload To Database</p>
+          <label className="flex text-xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-5 py-2 rounded-lg inline-block transition text-white">
+            Select JSON
+            <input
+              type="file"
+              accept=".json"
+              className="hidden"
+              onChange={handleFileUpload}
+            />
+          </label>
+
+          <span className="mx-2">{fileName || "No file selected"}</span>
+
+          <div className="flex justify-center gap-6 text-sm font-medium text-psuBeaver mt-5">
+            <label>
+              <input
+                type="radio"
+                value="jobs"
+                checked={importType === "jobs"}
+                onChange={(e) => setImportType(e.target.value)}
+              />
+              Jobs
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                value="courses"
+                checked={importType === "courses"}
+                onChange={(e) => setImportType(e.target.value)}
+              />
+              Courses
+            </label>
+          </div>
+          <div className="flex justify-center gap-6 text-sm font-medium text-psuBeaver mt-5">  
+            <button onClick={() => handleJSONUpload()} className="flex w-full text-xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-5 py-2 rounded-lg inline-block transition text-white">
+              Upload JSON File
+            </button>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   );
