@@ -37,9 +37,9 @@ export default function Home() {
       }
 
       // optional: auto-login after register
-      localStorage.setItem("email", email);
-      localStorage.setItem("role", role);
-      localStorage.setItem("userId", data._id);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("userId", data.id);
       localStorage.setItem("isLoggedIn", "true");
 
       // redirect to appropriate page

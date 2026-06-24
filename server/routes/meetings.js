@@ -63,6 +63,27 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// Get a meeting request by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const meetingRequest = await MeetingRequest.findById(id);
+
+    if (!meetingRequest) {
+      return res.status(404).json({
+        message: "Meeting request not found."
+      });
+    }
+
+    res.json(meetingRequest);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Server error."
+    });
+  }
+});
+
 // Get all meeting requests
 router.get("/", async (req, res) => {
   try {

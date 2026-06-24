@@ -1,99 +1,106 @@
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from "react-router-dom";
 
-interface Student {
-  first_name: string;
-  middle_initial: string;
-  last_name: string;
-  id: number;
-  major: string;
-  minor: string;
-  courses: string[];
-  additional_courses: string[];
-  skills: string[];
-  additional_skills: string[];
+interface MeetingRequest {
+  name: string;
+  psuId: string;
 }
-
-// fake student object used to test the display of the students information
-const mockStudent: Student = {
-  first_name: "John",
-  middle_initial: "D",
-  last_name: "Doe",
-  id: 123456,
-  major: "Computer Science",
-  minor: "Mathematics",
-  courses: ["Math 140", "CMPSC 360", "CMPEN 270"],
-  additional_courses: ["MATH 141", "CMPSC 221"],
-  skills: ["Python", "JavaScript","C"],
-  additional_skills: ["Java", "C++"]
-};
 
 
 export default function Home() {
+  const [meetingRequest, setMeetingRequest] = useState<MeetingRequest | null>(null);
+  const navigate = useNavigate();
+
+  async function fetchMeetingRequest() {
+        try {
+          const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/meetings/${localStorage.getItem("requestId")}`
+          );
+  
+          const data = await res.json();
+  
+          if (!res.ok) {
+            console.error(data.message);
+            return;
+          }
+  
+          setMeetingRequest(data);
+        } catch (error) {
+          console.error(error);
+        }
+    }
+  
+    useEffect(() => {
+      fetchMeetingRequest();
+    }, []);
+
+  async function generateReport() {
+    //TODO: Implement the logic to generate the report here
+  }
+
+  async function returnToDashboard() {
+    navigate("/faculty");
+  }
+
+  async function returnToDashboardDelete() {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/meetings/${localStorage.getItem("requestId")}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error(data.message);
+        return;
+      }
+      
+      navigate("/faculty");
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+    
   return (
     <div>
       <Helmet>
-        <title>Faculty View | C2CM</title>
+        <title>Advising Report | C2CM</title>
       </Helmet>
-      <h1 className='text-center text-4xl font-bold mb-5'>Faculty View</h1>
+      <h1 className='text-center text-4xl font-bold mb-5'>Advising Report</h1>
       
-      <div className="mx-auto mt-15 w-full max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
-        <form>
-          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Student Information</p>
-          <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">Name: {mockStudent.first_name} {mockStudent.middle_initial} {mockStudent.last_name}</label>
-          </div>
-          <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">ID: {mockStudent.id}</label>
-          </div>
-          <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">Major: {mockStudent.major}</label>
-          </div>
-          <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">Minor: {mockStudent.minor}</label>
-          </div>
-           <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">Courses: </label>            
-          </div>
-          <div className="boxContainer">
-            <ul className="list-disc list-inside ml-17 w-40 h-20 bg-psuBeaver text-white text-bold border-white border-2 p-2 rounded-xl overflow-y-auto">
-              {mockStudent.courses.map((course, index) => (
-                <li key={index}>{course}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">Additional Courses: </label>
-          </div>
-          <div className="boxContainer">
-            <ul className="list-disc list-inside ml-17 w-40 h-20 bg-psuBeaver text-white text-bold border-white border-2 p-2 rounded-xl overflow-y-auto">
-              {mockStudent.additional_courses.map((course, index) => (
-                <li key={index}>{course}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">Skills:</label>
-          </div>
-          <div className="boxContainer">
-            <ul className="list-disc list-inside ml-17 w-40 h-20 bg-psuBeaver text-white text-bold border-white border-2 p-2 rounded-xl overflow-y-auto">
-              {mockStudent.skills.map((skill, index) => (
-                <li key={index}>{skill}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="boxContainer">
-            <label className="whitespace-nowrap font-bold">Additional Skills: </label>
-          </div>
-          <div className="boxContainer">
-            <ul className="list-disc list-inside ml-17 w-40 h-20 bg-psuBeaver text-white text-bold border-white border-2 p-2 rounded-xl overflow-y-auto">
-              {mockStudent.additional_skills.map((skill, index) => (
-                <li key={index}>{skill}</li>
-              ))}
-            </ul>
-          </div>
-        </form>
+      <div className="flex justify-center gap-25">
+        <div className="flex justify-center gap-25 mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
+          <p className="text-2xl font-bold text-left pb-3 mb-4">Student Name: {meetingRequest?.name}</p>
+          <p className="text-2xl font-bold text-left pb-3 mb-4">Student PSU ID: {meetingRequest?.psuId}</p>
+        </div>
       </div>
-      
+
+      <div className="flex justify-center gap-25">
+        <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
+          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Courses</p>
+        </div>
+        <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
+          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Jobs</p>
+        </div>
+      </div>
+
+      <div className="flex justify-center gap-25 mt-15">
+        <button onClick={() => generateReport()} className="flex text-3xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-7 py-3 rounded-lg inline-block transition text-white">
+          Generate Report
+        </button>
+        <button onClick={() => returnToDashboard()} className="flex text-3xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-7 py-3 rounded-lg inline-block transition text-white">
+          Return
+        </button>
+        <button onClick={() => returnToDashboardDelete()} className="flex text-3xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-7 py-3 rounded-lg inline-block transition text-white">
+          Delete
+        </button>
+      </div>
+
+
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from "react-router-dom";
 
 interface MeetingRequest {
   _id: string;
@@ -8,6 +9,7 @@ interface MeetingRequest {
 
 export default function Home() {
   const [meetingRequests, setMeetingRequests] = useState<MeetingRequest[]>([]);
+  const navigate = useNavigate();
 
   async function fetchMeetingRequests() {
       try {
@@ -33,7 +35,8 @@ export default function Home() {
   }, []);
 
   async function acceptRequest(requestId: string) {
-    // Implement the logic to accept the meeting request here
+    localStorage.setItem("requestId", requestId);
+    navigate("/facultyview");
     console.log(`Accepted request with ID: ${requestId}`);
   }
 

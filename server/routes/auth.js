@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
             });
         }
 
-        // 3. Check password (plain text for now - prototype)
+        // 3. Check password
         if (user.password !== password) {
             return res.status(401).json({
                 message: "Invalid credentials"
@@ -74,6 +74,9 @@ router.post("/register", async (req, res) => {
 
     res.status(201).json({
       success: true,
+      role: user.role,
+      email: user.email,
+      id: user._id,
       message: "Account created successfully."
     });
 
