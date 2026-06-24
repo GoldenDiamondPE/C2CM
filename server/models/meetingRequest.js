@@ -5,22 +5,18 @@ const mongoose = require("mongoose");
 const meetingRequestSchema = new mongoose.Schema({
     studentId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
 
     name: {
         type: String,
-        required: true,
+        required: true
     },
 
     psuId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
-
-    
 
 });
 

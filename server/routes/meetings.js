@@ -38,6 +38,31 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Delete a meeting request
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const meetingRequest = await MeetingRequest.findByIdAndDelete(id);
+
+    if (!meetingRequest) {
+      return res.status(404).json({
+        message: "Meeting request not found."
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Meeting request deleted successfully."
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Server error."
+    });
+  }
+});
+
 // Get all meeting requests
 router.get("/", async (req, res) => {
   try {
