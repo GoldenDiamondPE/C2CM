@@ -5,11 +5,24 @@ import { useNavigate } from "react-router-dom";
 interface MeetingRequest {
   name: string;
   psuId: string;
+  courseIds: string[];
+}
+
+interface Course {
+  _id: string;
+  name: string;
 }
 
 
 export default function Home() {
   const [meetingRequest, setMeetingRequest] = useState<MeetingRequest | null>(null);
+
+  const [courses, setCourses] = useState<Course[]>([]);
+
+  const selectedCourses = courses.filter(course =>
+  meetingRequest?.courseIds.includes(course._id)
+);
+
   const navigate = useNavigate();
 
   async function fetchMeetingRequest() {
@@ -30,9 +43,29 @@ export default function Home() {
           console.error(error);
         }
     }
+
+    async function fetchCourses() {
+      try {
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/courses`
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          console.error(data.message);
+          return;
+        }
+
+        setCourses(data);
+      } catch (error) {
+        console.error(error);
+      }
+  }
   
     useEffect(() => {
       fetchMeetingRequest();
+      fetchCourses();
     }, []);
 
   async function generateReport() {
@@ -82,6 +115,25 @@ export default function Home() {
       <div className="flex justify-center gap-25">
         <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
           <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Courses</p>
+          <div className="max-h-125 overflow-auto">
+            <table className="w-full border border-gray-300">
+            <thead>
+            <tr className="bg-gray-100">
+                <th className="border p-3 text-left">Name</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {selectedCourses.map((course) => (
+                <tr key={course._id}>
+                <td className="border p-3">
+                    {course.name}
+                </td>
+                </tr>
+            ))}
+            </tbody>
+            </table>
+        </div>
         </div>
         <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
           <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Jobs</p>

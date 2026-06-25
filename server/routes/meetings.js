@@ -6,12 +6,12 @@ const MeetingRequest = require("../models/meetingRequest");
 // Create a new meeting request
 router.post("/", async (req, res) => {
   try {
-    const { studentId, name, psuId } = req.body;
+    const { studentId, name, psuId, courseIds } = req.body;
 
     // Basic validation
     if (!studentId || !name || !psuId) {
       return res.status(400).json({
-        message: "Student ID, name, and PSU ID are required."
+        message: "Student ID, name, PSU ID, and course IDs are required."
       });
     }
 
@@ -19,7 +19,8 @@ router.post("/", async (req, res) => {
     const meetingRequest = new MeetingRequest({
       studentId,
       name,
-      psuId
+      psuId,
+      courseIds
     });
 
     await meetingRequest.save();
