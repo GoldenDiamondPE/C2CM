@@ -50,6 +50,7 @@ mongoose.connect(process.env.MONGO_URI)
 //add routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/meetings", require("./routes/meetings"));
+app.use("/api/courses", require("./routes/courses"));
 
 
 // Get all students

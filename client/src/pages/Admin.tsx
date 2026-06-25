@@ -14,9 +14,10 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student");
 
+  const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState("");
 
-  const [importType, setImportType] = useState("students");
+  const [importType, setImportType] = useState("courses"); // default to courses
 
   async function fetchUsers() {
       try {
@@ -143,17 +144,42 @@ export default function Home() {
     }
   }
 
-  async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
+  async function handleFileSelect(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
-    if (file) {
-      setFileName(file.name);
-    }
+
+    if (!file) return;
+
+    setFile(file);
+    setFileName(file.name);
+
+    event.target.value = "";
   }
 
   async function handleJSONUpload() {
-    if (!fileName) {
-      alert("Please select a JSON file to upload.");
-      return;
+    if (!file) return;
+
+    const text = await file.text();
+
+    const jsonData = JSON.parse(text);
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/courses/import`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(jsonData),
+      });
+
+    if (res.ok) {
+        alert("JSON file uploaded successfully!");
+    } else {
+        const data = await res.json();
+        alert(data.message || "JSON file upload failed");
+    }
+
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -300,14 +326,14 @@ export default function Home() {
         </form>{/*Email + Password + Button*/}
           </div> 
           <div className="my-auto mt-15 w-100 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
-          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Upload To Database</p>
-          <label className="flex text-xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-5 py-2 rounded-lg inline-block transition text-white">
-            Select JSON
+            <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Upload To Database</p>
+            <label className="flex text-xl font-semibold text-center bg-psuBeaver hover:bg-psuNittany px-5 py-2 rounded-lg inline-block transition text-white">
+              Select JSON File
             <input
               type="file"
               accept=".json"
               className="hidden"
-              onChange={handleFileUpload}
+              onChange={handleFileSelect}
             />
           </label>
 
