@@ -6,10 +6,17 @@ interface Course {
   name: string;
 }
 
+interface Job {
+  _id: string;
+  title: string;
+}
+
 export default function Home() {
     const [courses, setCourses] = useState<Course[]>([]);
-
     const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+
+    const [jobs, setJobs] = useState<Job[]>([]);
+    const [selectedJobs, setSelectedJobs] = useState<string[]>([]);
 
     const [name, setName] = useState("");
     const [psuId, setPsuId] = useState("");
@@ -18,7 +25,11 @@ export default function Home() {
 
     async function handleMeetingRequest(e: React.FormEvent) {
         e.preventDefault();
+        console.log("Submitting meeting request with the following data:");
+        console.log("Name:", name);
+        console.log("PSU ID:", psuId);
         console.log("Selected Courses:", selectedCourses);
+        console.log("Selected Jobs:", selectedJobs);
         try {
         const res = await fetch(`${API_BASE_URL}/api/meetings`, {
             method: "POST",
@@ -29,7 +40,8 @@ export default function Home() {
             studentId: localStorage.getItem("userId"),
             name,
             psuId,
-            courseIds: selectedCourses
+            courseIds: selectedCourses,
+            jobIds: selectedJobs,
             }),
         });
 
@@ -66,16 +78,44 @@ export default function Home() {
             console.error(error);
           }
       }
+
+    async function fetchJobs() {
+          try {
+            const res = await fetch(
+              `${import.meta.env.VITE_API_URL}/api/jobs`
+            );
+    
+            const data = await res.json();
+    
+            if (!res.ok) {
+              console.error(data.message);
+              return;
+            }
+    
+            setJobs(data);
+          } catch (error) {
+            console.error(error);
+          }
+      }
     
       useEffect(() => {
         fetchCourses();
+        fetchJobs();
       }, []);
 
-    async function handleCheckboxChange(courseId: string) {
+    async function handleCourseCheckboxChange(courseId: string) {
         setSelectedCourses(prev =>
             prev.includes(courseId)
             ? prev.filter(id => id !== courseId)
             : [...prev, courseId]
+        );
+        }
+
+    async function handleJobCheckboxChange(jobId: string) {
+        setSelectedJobs(prev =>
+            prev.includes(jobId)
+            ? prev.filter(id => id !== jobId)
+            : [...prev, jobId]
         );
         }
 
@@ -155,7 +195,7 @@ export default function Home() {
                             type="checkbox"
                             value={course._id}
                             checked={selectedCourses.includes(course._id)}
-                            onChange={() => handleCheckboxChange(course._id)}
+                            onChange={() => handleCourseCheckboxChange(course._id)}
                             /> 
                         </td>
                         </tr>
@@ -166,6 +206,36 @@ export default function Home() {
             </div> 
             <div className="mx-auto mt-15 w-full max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
                 <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Jobs</p>
+                <div className="max-h-200 overflow-auto">
+                    <table className="w-full border border-gray-300">
+                    <thead>
+                    <tr className="bg-gray-100">
+                        <th className="border p-3 text-left">Title</th>
+                        <th className="border p-3 text-left">Selection</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {jobs.map((job) => (
+                        <tr key={job._id}>
+                        <td className="border p-3">
+                            {job.title}
+                        </td>
+
+
+                        <td className="text-center border p-3">
+                            <input 
+                            type="checkbox"
+                            value={job._id}
+                            checked={selectedJobs.includes(job._id)}
+                            onChange={() => handleJobCheckboxChange(job._id)}
+                            /> 
+                        </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                    </table>
+                </div>
             </div> 
         </div>
         <div className="flex justify-center gap-25 mt-15">

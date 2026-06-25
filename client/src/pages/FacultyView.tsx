@@ -6,6 +6,7 @@ interface MeetingRequest {
   name: string;
   psuId: string;
   courseIds: string[];
+  jobIds: string[];
 }
 
 interface Course {
@@ -13,14 +14,23 @@ interface Course {
   name: string;
 }
 
+interface Job {
+  _id: string;
+  title: string;
+}
 
 export default function Home() {
   const [meetingRequest, setMeetingRequest] = useState<MeetingRequest | null>(null);
 
   const [courses, setCourses] = useState<Course[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
 
   const selectedCourses = courses.filter(course =>
   meetingRequest?.courseIds.includes(course._id)
+);
+
+  const selectedJobs = jobs.filter(job =>
+  meetingRequest?.jobIds.includes(job._id)
 );
 
   const navigate = useNavigate();
@@ -62,10 +72,30 @@ export default function Home() {
         console.error(error);
       }
   }
+
+  async function fetchJobs() {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/jobs`
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error(data.message);
+        return;
+      }
+
+      setJobs(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   
     useEffect(() => {
       fetchMeetingRequest();
       fetchCourses();
+      fetchJobs();
     }, []);
 
   async function generateReport() {
@@ -133,10 +163,29 @@ export default function Home() {
             ))}
             </tbody>
             </table>
-        </div>
+          </div>
         </div>
         <div className="mt-15 w-200 max-w-3xl rounded-xl p-6 text-black border-8 border-psuBeaver">
           <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Jobs</p>
+          <div className="max-h-125 overflow-auto">
+            <table className="w-full border border-gray-300">
+            <thead>
+            <tr className="bg-gray-100">
+                <th className="border p-3 text-left">Name</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {selectedJobs.map((job) => (
+                <tr key={job._id}>
+                <td className="border p-3">
+                    {job.title}
+                </td>
+                </tr>
+            ))}
+            </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

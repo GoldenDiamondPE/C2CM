@@ -22,6 +22,11 @@ const meetingRequestSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
+    
+    jobIds: {
+        type: [String],
+        required: true
+    }
 });
 
 module.exports = mongoose.model("MeetingRequest", meetingRequestSchema);

@@ -6,7 +6,7 @@ const MeetingRequest = require("../models/meetingRequest");
 // Create a new meeting request
 router.post("/", async (req, res) => {
   try {
-    const { studentId, name, psuId, courseIds } = req.body;
+    const { studentId, name, psuId, courseIds, jobIds } = req.body;
 
     // Basic validation
     if (!studentId || !name || !psuId) {
@@ -20,7 +20,8 @@ router.post("/", async (req, res) => {
       studentId,
       name,
       psuId,
-      courseIds
+      courseIds,
+      jobIds
     });
 
     await meetingRequest.save();
