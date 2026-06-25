@@ -161,27 +161,48 @@ export default function Home() {
     const text = await file.text();
 
     const jsonData = JSON.parse(text);
+    if (importType === "courses") {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/courses/import`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(jsonData),
+        });
 
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/courses/import`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(jsonData),
-      });
+      if (res.ok) {
+          alert("JSON file uploaded successfully!");
+      } else {
+          const data = await res.json();
+          alert(data.message || "JSON file upload failed");
+      }
 
-    if (res.ok) {
-        alert("JSON file uploaded successfully!");
-    } else {
-        const data = await res.json();
-        alert(data.message || "JSON file upload failed");
+      } catch (error) {
+        console.error(error);
+      }
+    } else if (importType === "jobs") {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/jobs/import`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(jsonData),
+        });
+
+      if (res.ok) {
+          alert("JSON file uploaded successfully!");
+      } else {
+          const data = await res.json();
+          alert(data.message || "JSON file upload failed");
+      }
+
+      } catch (error) {
+        console.error(error);
+      }
+      }
     }
-
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <div>

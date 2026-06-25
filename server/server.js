@@ -51,6 +51,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/meetings", require("./routes/meetings"));
 app.use("/api/courses", require("./routes/courses"));
+app.use("/api/jobs", require("./routes/jobs"));
 
 
 // Get all students
