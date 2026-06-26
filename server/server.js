@@ -21,7 +21,7 @@ const skillsdb = path.join(__dirname, 'data', 'skills.json');
 app.use(express.json());
 
 //Start MongoDB
-const PsuCourseOnetSkill = require("./models/PsuCourseOnet");
+const PsuCourseOnetSkill = require("./models/course");
 
 
 app.use(cors({

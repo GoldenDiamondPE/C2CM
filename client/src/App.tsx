@@ -16,6 +16,8 @@ import StudentMeetingRequest from './pages/StudentMeetingRequest';
 import Demo from './pages/zDemo';
 import FacultyView from './pages/FacultyView';
 import CourseFetch from './pages/CourseFetch';
+import MeetingDashboard from './pages/MeetingDashboard';
+
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,7 @@ const router = createBrowserRouter([
       { path: "facultyview", element: <FacultyView /> },
       { path: "coursefetch", element: <CourseFetch /> },
       { path: "register", element: <Register /> },
+      { path: "meetingdashboard", element: <MeetingDashboard /> },
 
     ],
   },

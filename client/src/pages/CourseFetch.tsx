@@ -14,13 +14,12 @@ interface PsuCourse {
   category?: string;
 }
 
-export default function PsuCoursesList() {
-  const [psuCourses, setPsuCourses] = useState<PsuCourse[]>([]);
+export default function Home() {
+  const [PSUCourse, setPSUCourse] = useState<PsuCourse[]>([]);
 
-  // 2. Fetch data from matching backend route exactly matching your template style
-  async function fetchPsuCourses() {
+  async function fetchPSUCourse() {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/psu-courses-onet`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/courses`);
       const data = await res.json();
 
       if (!res.ok) {
@@ -28,14 +27,14 @@ export default function PsuCoursesList() {
         return;
       }
 
-      setPsuCourses(data);
+      setPSUCourse(data);
     } catch (error) {
       console.error(error);
     }
   }
 
   useEffect(() => {
-    fetchPsuCourses();
+    fetchPSUCourse();
   }, []);
 
   return (
@@ -49,7 +48,7 @@ export default function PsuCoursesList() {
       <div className="flex justify-center gap-25">
         {/* Course Information Card Container */}
         <div className="mt-15 w-250 max-w-5xl rounded-xl p-6 text-black border-8 border-psuBeaver">
-          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Available Courses | psu_courses_onet_skills db</p>
+          <p className="text-2xl font-bold text-left pb-3 border-b mb-4">Available Courses</p>
 
           <div className="overflow-x-auto">
             <table className="w-full border border-gray-300">
@@ -64,7 +63,7 @@ export default function PsuCoursesList() {
               </thead>
 
               <tbody>
-                {psuCourses.map((course) => {
+                {PSUCourse.map((course) => {
                   // Fallback evaluation array variable to extract active payload items safely
                   const activeSkills = 
                     course.skills_covered && course.skills_covered.length > 0 
@@ -101,7 +100,7 @@ export default function PsuCoursesList() {
             </table>
           </div>
 
-          {psuCourses.length === 0 && (
+          {PSUCourse.length === 0 && (
             <p className="text-center mt-4 text-gray-500">
               No courses found
             </p>

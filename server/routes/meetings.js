@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const MeetingRequest = require("../models/meetingRequest");
+const Course = require("../models/course"); // Ensure these paths match your project structure
+const Job = require("../models/job");
 
 
 // Create a new meeting request
@@ -97,6 +99,67 @@ router.get("/", async (req, res) => {
         message: "Server error."
       });
     }
+});
+
+
+
+
+const { spawn } = require("child_process");
+const path = require("path");
+
+// POST /api/meetings/:id/run-advisor
+// This route is called when "Generate Report" is clicked.
+// It fires up Brandon's script, feeds it the database ID, and sends the JSON back to React.
+router.post("/:id/run-advisor", async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Path to where Brandon's gcn_advisor.py file is saved relative to this file
+    const scriptPath = path.join(__dirname, "..", "gcn_advisor.py"); 
+
+    // Spawn the python process: equivalent to running `python gcn_advisor.py <id>`
+    const pythonProcess = spawn("python", [scriptPath, id]);
+
+    let outputData = "";
+    let errorData = "";
+
+    // Collect success printing (json.dumps) from Python
+    pythonProcess.stdout.on("data", (data) => {
+      outputData += data.toString();
+    });
+
+    // Collect error messages from Python
+    pythonProcess.stderr.on("data", (data) => {
+      errorData += data.toString();
+    });
+
+    // When Python wraps up its reinforcement learning loop
+    pythonProcess.on("close", (code) => {
+      if (code !== 0) {
+        console.error(`Python script crashed with exit code ${code}:`, errorData);
+        return res.status(500).json({ error: "AI pipeline execution failure.", details: errorData });
+      }
+
+      try {
+        // Parse the final dictionary printed by Brandon's script
+        const aiResult = JSON.parse(outputData.trim());
+        
+        if (aiResult.error) {
+          return res.status(400).json({ error: aiResult.error });
+        }
+
+        // Return the structured object back to your React frontend!
+        res.json(aiResult);
+      } catch (parseErr) {
+        console.error("Failed parsing Python console string:", outputData);
+        res.status(500).json({ error: "Received invalid data format from the AI engine." });
+      }
+    });
+
+  } catch (error) {
+    console.error("Server execution error:", error);
+    res.status(500).json({ error: "Internal server error triggering backend engine." });
+  }
 });
 
 module.exports = router;
