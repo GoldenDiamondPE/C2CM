@@ -24,7 +24,8 @@ export default function Home() {
 
   const [courses, setCourses] = useState<Course[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
-
+  //boolean to help show the report data once the button is clicked
+  const [showReport, setShowReport] = useState(false);
   const selectedCourses = courses.filter(course =>
   meetingRequest?.courseIds.includes(course._id)
 );
@@ -100,6 +101,7 @@ export default function Home() {
 
   async function generateReport() {
     //TODO: Implement the logic to generate the report here
+    setShowReport(true);
   }
 
   async function returnToDashboard() {
@@ -200,8 +202,14 @@ export default function Home() {
           Delete
         </button>
       </div>
-
-
+      {showReport && (
+      <div className=" mt-5 w-full h-70 mx-auto max-w-3xl overflow-y-auto rounded-xl p-6 text-black border-8 border-psuBeaver">
+        Report generated successfully!
+        <pre>
+      {JSON.stringify(selectedJobs, null, 1)}
+    </pre>
+      </div>
+      )}
     </div>
   );
 }
