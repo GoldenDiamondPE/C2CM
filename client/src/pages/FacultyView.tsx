@@ -205,9 +205,7 @@ export default function Home() {
       {showReport && (
       <div className=" mt-5 w-full h-70 mx-auto max-w-3xl overflow-y-auto rounded-xl p-6 text-black border-8 border-psuBeaver">
         Report generated successfully!
-        <pre>
-      {JSON.stringify(selectedJobs, null, 1)}
-    </pre>
+        
       </div>
       )}
     </div>
