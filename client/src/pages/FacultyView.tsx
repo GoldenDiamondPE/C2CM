@@ -21,7 +21,7 @@ interface Job {
 
 export default function Home() {
   const [meetingRequest, setMeetingRequest] = useState<MeetingRequest | null>(null);
-
+  const [report, setReport] = useState<string | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   //boolean to help show the report data once the button is clicked
@@ -102,6 +102,17 @@ export default function Home() {
   async function generateReport() {
     //TODO: Implement the logic to generate the report here
     setShowReport(true);
+    const res = await fetch(`${"http://localhost:8000"}/report`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(selectedJobs)
+      }
+    );
+    const data = await res.json();
+    setReport(data.report);
   }
 
   async function returnToDashboard() {
@@ -204,8 +215,7 @@ export default function Home() {
       </div>
       {showReport && (
       <div className=" mt-5 w-full h-70 mx-auto max-w-3xl overflow-y-auto rounded-xl p-6 text-black border-8 border-psuBeaver">
-        Report generated successfully!
-        
+        <pre className="whitespace-pre-wrap text-black font-sans text-lg font-bold">{report}</pre>
       </div>
       )}
     </div>
