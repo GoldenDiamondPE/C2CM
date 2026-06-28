@@ -7,7 +7,7 @@ from model import generate_report #function to generate report
 #creates the FASTAPI app instance
 app = FastAPI()
 
-
+#to be able to run the api locally you need to open another terminal to activate a third server (https://localhost:8000) by typing: uvicorn main:app --reload
 
 # List of websites that are allowed to access this API.
 origins = [
@@ -30,4 +30,5 @@ app.add_middleware(
 def get_report(jobs: list[Jobs]):
     report = generate_report(jobs)
     return {"report": report}
+
 
