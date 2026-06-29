@@ -1,3 +1,11 @@
 uvicorn
 fastapi
 pydantic
+python-Levenshtein 
+fuzzywuzzy 
+torch
+numpy
+networkx
+collections 
+json
+scipy
