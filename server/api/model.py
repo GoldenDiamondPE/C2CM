@@ -152,7 +152,9 @@ class IntegratedGCNAdvisor:
         job_skills = {s for j in selected_jobs for s in j['required_skills']}
         report_list = []
         report_list.append("=== STUDENT SELECTIONS ===")
-        report_list.append(f"Target Jobs: {', '.join([j['title'] for j in selected_jobs])}")
+        #changed code to make sure it did not get multiple jobs with the same name
+        unique_titles = sorted(list(set(j['title'] for j in selected_jobs)))
+        report_list.append(f"Target Jobs: {', '.join(unique_titles)}")
         report_list.append(f"Initial Courses: {', '.join(taken_names)}")
 
         current_skills = set()
