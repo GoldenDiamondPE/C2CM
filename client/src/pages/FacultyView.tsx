@@ -34,7 +34,23 @@ export default function Home() {
   meetingRequest?.jobIds.includes(job._id)
 );
 
+const [profile, setProfile] = useState<{
+  initial_courses: string[];
+  target_jobs: string[];
+}>({
+  initial_courses: [],
+  target_jobs: [],
+});
+
   const navigate = useNavigate();
+
+  async function fetchProfile() {
+   setProfile({
+      initial_courses: selectedCourses.map(course => course.name),
+      target_jobs: selectedJobs.map(job => job.title),
+    });
+  }
+
 
   async function fetchMeetingRequest() {
         try {
@@ -102,13 +118,18 @@ export default function Home() {
   async function generateReport() {
     //TODO: Implement the logic to generate the report here
     setShowReport(true);
+    fetchProfile()
     const res = await fetch(`${"http://localhost:8000"}/report`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(selectedJobs)
+        body: JSON.stringify({
+          student_profile: profile,
+          courses,
+          jobs
+      })
       }
     );
     const data = await res.json();
