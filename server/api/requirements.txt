@@ -6,6 +6,5 @@ fuzzywuzzy
 torch
 numpy
 networkx
-collections 
 json
 scipy
