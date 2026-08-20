@@ -21,7 +21,7 @@ interface Job {
 
 export default function Home() {
   const [meetingRequest, setMeetingRequest] = useState<MeetingRequest | null>(null);
-
+  const [report, setReport] = useState<string | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   //boolean to help show the report data once the button is clicked
@@ -33,7 +33,6 @@ export default function Home() {
   const selectedJobs = jobs.filter(job =>
   meetingRequest?.jobIds.includes(job._id)
 );
-
   const navigate = useNavigate();
 
   async function fetchMeetingRequest() {
@@ -102,6 +101,32 @@ export default function Home() {
   async function generateReport() {
     //TODO: Implement the logic to generate the report here
     setShowReport(true);
+    const Profile = {
+      initial_courses: selectedCourses.map(course => course.name),
+      target_jobs: selectedJobs.map(job => job.title),
+    };
+
+    const payload = {
+    student_profile: Profile,
+    courses: [...courses],
+    jobs: [...jobs],
+  };
+    const address = "https://gcn-dqn-model-873971735932.us-east1.run.app";
+    const res = await fetch(`${address}/report`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          student_profile: Profile,
+          courses: payload.courses,
+          jobs: payload.jobs
+        })
+      }
+    );
+    const data = await res.json();
+    setReport(data.report);
   }
 
   async function returnToDashboard() {
@@ -204,8 +229,7 @@ export default function Home() {
       </div>
       {showReport && (
       <div className=" mt-5 w-full h-70 mx-auto max-w-3xl overflow-y-auto rounded-xl p-6 text-black border-8 border-psuBeaver">
-        Report generated successfully!
-        
+        <pre className="whitespace-pre-wrap text-black font-sans text-lg font-bold">{report}</pre>
       </div>
       )}
     </div>
