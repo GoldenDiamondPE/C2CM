@@ -7,6 +7,8 @@ interface UploadStatus {
   message: string;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 export default function StudentUploader() {
   const [files, setFiles] = useState<File[]>([]);
   const [fileNames, setFileNames] = useState<string[]>([]);
@@ -83,7 +85,7 @@ export default function StudentUploader() {
         const payload = { students: targetArray };
 
         // Point to your student ingest api route
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/students/append`, payload, {
+        const response = await axios.post(`${API_BASE_URL}/api/students/append`, payload, {
           headers: { 'Content-Type': 'application/json' }
         });
 

@@ -17,10 +17,12 @@ interface PsuCourse {
 export default function PsuCoursesList() {
   const [psuCourses, setPsuCourses] = useState<PsuCourse[]>([]);
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
+
   // 2. Fetch data from matching backend route exactly matching your template style
   async function fetchPsuCourses() {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/psu-courses-onet`);
+      const res = await fetch(`${API_BASE_URL}/api/psu-courses-onet`);
       const data = await res.json();
 
       if (!res.ok) {

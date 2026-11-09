@@ -10,11 +10,12 @@ interface MeetingRequest {
 export default function Home() {
   const [meetingRequests, setMeetingRequests] = useState<MeetingRequest[]>([]);
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   async function fetchMeetingRequests() {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/meetings`
+          `${API_BASE_URL}/api/meetings`
         );
 
         const data = await res.json();
@@ -42,7 +43,7 @@ export default function Home() {
 
   async function deleteRequest(requestId: string) {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/meetings/${requestId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/meetings/${requestId}`, {
         method: "DELETE",
       });
       const data = await res.json();

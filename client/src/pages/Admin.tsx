@@ -19,10 +19,12 @@ export default function Home() {
 
   const [importType, setImportType] = useState("courses"); // default to courses
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
+
   async function fetchUsers() {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/auth/users`
+          `${API_BASE_URL}/api/auth/users`
         );
 
         const data = await res.json();
@@ -44,7 +46,7 @@ export default function Home() {
 
   async function deleteUser(id: string) {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/users/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/auth/users/${id}`, {
         method: "DELETE",
       });
 
@@ -64,7 +66,7 @@ export default function Home() {
 
   async function editUser(id: string) {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/users/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/auth/users/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +103,7 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+      const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +129,7 @@ export default function Home() {
 
       // Refresh the user list
       const res2 = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/users`
+        `${API_BASE_URL}/api/auth/users`
       );
 
       const data2 = await res2.json();
@@ -163,7 +165,7 @@ export default function Home() {
     const jsonData = JSON.parse(text);
     if (importType === "courses") {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/courses/import`, {
+        const res = await fetch(`${API_BASE_URL}/api/courses/import`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -183,7 +185,7 @@ export default function Home() {
       }
     } else if (importType === "jobs") {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/jobs/import`, {
+        const res = await fetch(`${API_BASE_URL}/api/jobs/import`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

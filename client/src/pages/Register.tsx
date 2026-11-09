@@ -10,7 +10,7 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student");
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || "https://coursestocareerpathmapperwa-e5gbh3grh6a6fxbj.eastus-01.azurewebsites.net";
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 
   async function handleRegister(e: React.FormEvent) {

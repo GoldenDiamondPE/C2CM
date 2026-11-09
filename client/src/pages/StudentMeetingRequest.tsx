@@ -21,7 +21,7 @@ export default function Home() {
     const [name, setName] = useState("");
     const [psuId, setPsuId] = useState("");
 
-    const API_BASE_URL = import.meta.env.VITE_API_URL || "https://coursestocareerpathmapperwa-e5gbh3grh6a6fxbj.eastus-01.azurewebsites.net";
+    const API_BASE_URL = import.meta.env.VITE_API_URL;
 
     async function handleMeetingRequest(e: React.FormEvent) {
         e.preventDefault();
@@ -63,7 +63,7 @@ export default function Home() {
     async function fetchCourses() {
           try {
             const res = await fetch(
-              `${import.meta.env.VITE_API_URL}/api/courses`
+              `${API_BASE_URL}/api/courses`
             );
     
             const data = await res.json();
@@ -82,7 +82,7 @@ export default function Home() {
     async function fetchJobs() {
           try {
             const res = await fetch(
-              `${import.meta.env.VITE_API_URL}/api/jobs`
+              `${API_BASE_URL}/api/jobs`
             );
     
             const data = await res.json();

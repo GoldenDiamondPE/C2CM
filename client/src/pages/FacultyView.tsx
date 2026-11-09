@@ -24,21 +24,24 @@ export default function Home() {
   const [report, setReport] = useState<string | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
+  
   //boolean to help show the report data once the button is clicked
   const [showReport, setShowReport] = useState(false);
   const selectedCourses = courses.filter(course =>
-  meetingRequest?.courseIds.includes(course._id)
-);
+    meetingRequest?.courseIds.includes(course._id)
+  );
 
   const selectedJobs = jobs.filter(job =>
-  meetingRequest?.jobIds.includes(job._id)
-);
+    meetingRequest?.jobIds.includes(job._id)
+  );
   const navigate = useNavigate();
+
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   async function fetchMeetingRequest() {
         try {
           const res = await fetch(
-            `${import.meta.env.VITE_API_URL}/api/meetings/${localStorage.getItem("requestId")}`
+            `${API_BASE_URL}/api/meetings/${localStorage.getItem("requestId")}`
           );
   
           const data = await res.json();
@@ -57,7 +60,7 @@ export default function Home() {
     async function fetchCourses() {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/courses`
+          `${API_BASE_URL}/api/courses`
         );
 
         const data = await res.json();
@@ -76,7 +79,7 @@ export default function Home() {
   async function fetchJobs() {
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/jobs`
+        `${API_BASE_URL}/api/jobs`
       );
 
       const data = await res.json();
@@ -135,7 +138,7 @@ export default function Home() {
 
   async function returnToDashboardDelete() {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/meetings/${localStorage.getItem("requestId")}`, {
+      const res = await fetch(`${API_BASE_URL}/api/meetings/${localStorage.getItem("requestId")}`, {
         method: "DELETE",
       });
       const data = await res.json();

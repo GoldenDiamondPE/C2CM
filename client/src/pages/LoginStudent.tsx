@@ -8,11 +8,13 @@ export default function Home() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
   
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

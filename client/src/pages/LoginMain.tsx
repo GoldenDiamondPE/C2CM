@@ -9,9 +9,11 @@ export default function Home() {
 
   const [loading, setLoading] = useState(true);
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     // Debug Log for testing the API URL
-    console.log("API URL:", import.meta.env.VITE_API_URL);
+    console.log("API URL:", API_BASE_URL);
 
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     const role = localStorage.getItem("role");
